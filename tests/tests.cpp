@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 #include <algorithm>
 #include <boost/asio.hpp>
-#include <boost/beast.hpp>
 
 #include "httpClient.h"
 #include "httpConnection.h"
@@ -76,6 +75,16 @@ TEST(serverTest, startServerConnection) {
     server.run();
 }
 
+TEST(routerTest, callUserManager) {
+    MockUserManager userManager;
+    RequestServer request{http::verb::get, "/loginUser", 11};
+
+    EXPECT_CALL(userManager, loginUser(request)).Times(testing::AtLeast(1));
+
+    MockUserManager *pUserManager = &userManager;
+    Router router(pUserManager, nullptr);
+    router.execute(request);
+}
 
 int main(int argc, char *argv[]) {
     std::cout << 3 << std::endl;

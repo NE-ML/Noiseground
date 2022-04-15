@@ -19,5 +19,5 @@ include_directories(${Boost_INCLUDE_DIRS})
 include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(tests tests.cpp)
-target_link_libraries(tests ${GTEST_LIBRARIES} m pthread)
 target_link_libraries(tests ${Boost_LIBRARIES})
+target_link_libraries(tests m pthread ${GTEST_LIBRARIES})
