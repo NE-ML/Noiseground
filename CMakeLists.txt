@@ -20,13 +20,14 @@ set(UI_SOURCES
         src/auth_dialog.cpp
         src/sign_up_dialog.cpp
         src/userwindow.cpp
-)
+        src/UIManager.cpp)
 
 set(UI_HEADERS
         include/mainwindow.h
         include/auth_dialog.h
         include/sign_up_dialog.h
-        include/userwindow.h)
+        include/userwindow.h
+        include/UIManager.h)
 
 add_executable(${PROJECT_NAME} ${UI_SOURCES} ${UI_HEADERS})
 

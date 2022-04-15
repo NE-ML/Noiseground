@@ -3,12 +3,12 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
-{
+#include "UIManager.h"
+
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    UserWindow window;
-    window.show();
+    UIManager uiManager;
+    uiManager.showUserWindow();
+    uiManager.showMainWindow();
     return a.exec();
 }

@@ -23,10 +23,6 @@ SignUpDialog::~SignUpDialog() {
     delete signup;
 }
 
-/*void on_backButton_clicked() {
-
-}*/
-
 void SignUpDialog::on_signup_clicked() {
     QString log = login->text();
     QString pass = this->pass->text();

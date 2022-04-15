@@ -16,7 +16,6 @@ public:
 
 private slots:
     void on_signup_clicked();
-    // void on_backButton_clicked();
     
 private:
     QGroupBox *groupBox;
