@@ -13,10 +13,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void setupUi(QMainWindow *MainWindow);
-
-    void retranslateUi(QMainWindow *MainWindow);
-
 private slots:
     void on_Exit_clicked();
 
@@ -35,5 +31,9 @@ private:
     QPushButton *Exit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
+    
+    void setupUi(QMainWindow *MainWindow);
+
+    void retranslateUi(QMainWindow *MainWindow);
 };
 #endif // MAINWINDOW_H

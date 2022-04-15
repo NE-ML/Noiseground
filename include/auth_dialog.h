@@ -14,12 +14,11 @@ public:
     explicit AuthDialog(QWidget *parent = nullptr);
     ~AuthDialog();
 
-    void setupUi(QDialog *AuthDialog);
 
-    void retranslateUi(QDialog *AuthDialog);
 
 private slots:
     void on_loginButton_clicked();
+    void on_backButton_clicked() {}
 
 private:
     QLabel *label;
@@ -33,6 +32,10 @@ private:
     QLabel *label_3;
     QLineEdit *password;
     QPushButton *loginButton;
+    
+    void setupUi(QDialog *AuthDialog);
+
+    void retranslateUi(QDialog *AuthDialog);
 };
 
 #endif // AUTH_DIALOG_H
