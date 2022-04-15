@@ -32,3 +32,12 @@ set(UI_HEADERS
 add_executable(${PROJECT_NAME} ${UI_SOURCES} ${UI_HEADERS})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+
+enable_testing()
+
+find_package(GTest REQUIRED)
+
+include_directories(${GTEST_INCLUDE_DIRS})
+
+add_executable(tst tests/test.cpp)
+target_link_libraries(tst Qt5::Widgets ${GTEST_LIBRARIES})
