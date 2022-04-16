@@ -1,4 +1,4 @@
-#include "sign_up_dialog.h"
+#include "SignUpDialog.h"
 
 #include <QCoreApplication>
 #include <QPushButton>

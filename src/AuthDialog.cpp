@@ -1,4 +1,4 @@
-#include "auth_dialog.h"
+#include "AuthDialog.h"
 
 #include <QPushButton>
 #include <QApplication>

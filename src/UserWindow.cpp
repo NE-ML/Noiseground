@@ -1,4 +1,4 @@
-#include "userwindow.h"
+#include "UserWindow.h"
 
 #include <QMenuBar>
 #include <QStatusBar>

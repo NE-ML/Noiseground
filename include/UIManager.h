@@ -1,8 +1,8 @@
 #ifndef INCLUDE_UIMANAGER_H_
 #define INCLUDE_UIMANAGER_H_
 
-#include "mainwindow.h"
-#include "userwindow.h"
+#include "MainWindow.h"
+#include "UserWindow.h"
 
 class UIManager {
 public:

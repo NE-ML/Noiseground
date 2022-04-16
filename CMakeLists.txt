@@ -14,22 +14,21 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-set(UI_SOURCES 
-        src/main.cpp
-        src/mainwindow.cpp
-        src/auth_dialog.cpp
-        src/sign_up_dialog.cpp
-        src/userwindow.cpp
+set(UI_SOURCES
+        src/MainWindow.cpp
+        src/AuthDialog.cpp
+        src/SignUpDialog.cpp
+        src/UserWindow.cpp
         src/UIManager.cpp)
 
 set(UI_HEADERS
-        include/mainwindow.h
-        include/auth_dialog.h
-        include/sign_up_dialog.h
-        include/userwindow.h
+        include/MainWindow.h
+        include/AuthDialog.h
+        include/SignUpDialog.h
+        include/UserWindow.h
         include/UIManager.h)
 
-add_executable(${PROJECT_NAME} ${UI_SOURCES} ${UI_HEADERS})
+add_executable(${PROJECT_NAME} src/main.cpp ${UI_SOURCES} ${UI_HEADERS})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 
@@ -39,5 +38,5 @@ find_package(GTest REQUIRED)
 
 include_directories(${GTEST_INCLUDE_DIRS})
 
-add_executable(tst tests/test.cpp)
+add_executable(tst tests/test.cpp ${UI_SOURCES} ${UI_HEADERS})
 target_link_libraries(tst Qt5::Widgets ${GTEST_LIBRARIES})
