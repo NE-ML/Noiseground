@@ -9,6 +9,12 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setupUi(this);
+    auth = new AuthDialog();
+    auth->setModal(true);
+    connect(auth, &AuthDialog::showMainWindow, this, &MainWindow::show);
+    signupButton = new SignUpDialog();
+    signupButton->setModal(true);
+    connect(signupButton, &SignUpDialog::showMainWindow, this, &MainWindow::show);
     //connect(ui->AuthDialog::backButton, &QPushButton::clicked, this, &QMainWindow::show);
 }
 
@@ -110,15 +116,11 @@ void MainWindow::on_Exit_clicked() {
 
 void MainWindow::on_Login_clicked() {
     hide();
-    AuthDialog auth;
-    auth.setModal(true);
-    auth.exec();
+    auth->exec();
 }
 
 
 void MainWindow::on_SignUp_clicked() {
     hide();
-    SignUpDialog signup;
-    signup.setModal(true);
-    signup.exec();
+    signupButton->exec();
 }

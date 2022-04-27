@@ -14,11 +14,12 @@ public:
     explicit AuthDialog(QWidget *parent = nullptr);
     ~AuthDialog();
 
-
+signals:
+    void showMainWindow();
 
 private slots:
     void on_loginButton_clicked();
-    void on_backButton_clicked() {}
+    void on_backButton_clicked();
 
 private:
     QLabel *label;
@@ -32,6 +33,7 @@ private:
     QLabel *label_3;
     QLineEdit *password;
     QPushButton *loginButton;
+    QPushButton *backButton;
     
     void setupUi(QDialog *AuthDialog);
 

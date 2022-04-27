@@ -12,10 +12,14 @@ class SignUpDialog : public QDialog {
 
 public:
     explicit SignUpDialog(QWidget *parent = nullptr);
-    ~SignUpDialog();
+    ~SignUpDialog() override;
 
+signals:
+    void showMainWindow();
+    
 private slots:
     void on_signup_clicked();
+    void on_backButton_clicked();
     
 private:
     QGroupBox *groupBox;
@@ -31,8 +35,9 @@ private:
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_3;
     QLineEdit *pass_repeat;
-    QPushButton *signup;
-
+    QPushButton *signupButton;
+    QPushButton *backButton;
+    
     void setupUi(QDialog *SignUpDialog);
 
     void retranslateUi(QDialog *SignUpDialog);

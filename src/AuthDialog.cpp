@@ -98,7 +98,11 @@ void AuthDialog::setupUi(QDialog *AuthDialog) {
     loginButton->setObjectName(QString::fromUtf8("loginButton"));
 
     verticalLayout->addWidget(loginButton);
-
+    
+    backButton = new QPushButton(layoutWidget);
+    backButton->setObjectName(QString::fromUtf8("backButton"));
+    
+    verticalLayout->addWidget(backButton);
 
     retranslateUi(AuthDialog);
 
@@ -112,4 +116,11 @@ void AuthDialog::retranslateUi(QDialog *AuthDialog) {
     label_2->setText(QCoreApplication::translate("AuthDialog", "\320\233\320\276\320\263\320\270\320\275", nullptr));
     label_3->setText(QCoreApplication::translate("AuthDialog", "\320\237\320\260\321\200\320\276\320\273\321\214", nullptr));
     loginButton->setText(QCoreApplication::translate("AuthDialog", "\320\222\320\276\320\271\321\202\320\270", nullptr));
-} // retranslateUi
+    backButton->setText(QCoreApplication::translate("AuthDialog", "Назад", nullptr));
+}
+
+void AuthDialog::on_backButton_clicked() {
+    close();
+    emit showMainWindow();
+}
+// retranslateUi

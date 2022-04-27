@@ -5,6 +5,8 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include "AuthDialog.h"
+#include "SignUpDialog.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -21,6 +23,9 @@ private slots:
     void on_SignUp_clicked();
 
 private:
+    AuthDialog *auth;
+    SignUpDialog *signupButton;
+    
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout;
     QLabel *label;

@@ -20,7 +20,7 @@ SignUpDialog::~SignUpDialog() {
     delete pass;
     delete pass_repeat;
     delete login;
-    delete signup;
+    delete signupButton;
 }
 
 void SignUpDialog::on_signup_clicked() {
@@ -36,7 +36,8 @@ void SignUpDialog::retranslateUi(QDialog *SignUpDialog) {
     label->setText(QCoreApplication::translate("SignUpDialog", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\273\320\276\320\263\320\270\320\275", nullptr));
     label_2->setText(QCoreApplication::translate("SignUpDialog", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214", nullptr));
     label_3->setText(QCoreApplication::translate("SignUpDialog", "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214", nullptr));
-    signup->setText(QCoreApplication::translate("SignUpDialog", "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217", nullptr));
+    signupButton->setText(QCoreApplication::translate("SignUpDialog", "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217", nullptr));
+    backButton->setText(QCoreApplication::translate("SignUpDialog", "Назад", nullptr));
 }
 
 void SignUpDialog::setupUi(QDialog *SignUpDialog) {
@@ -102,13 +103,23 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
 
     verticalLayout_2->addLayout(verticalLayout);
 
-    signup = new QPushButton(layoutWidget);
-    signup->setObjectName(QString::fromUtf8("signup"));
+    signupButton = new QPushButton(layoutWidget);
+    signupButton->setObjectName(QString::fromUtf8("signupButton"));
 
-    verticalLayout_2->addWidget(signup);
+    verticalLayout_2->addWidget(signupButton);
 
+    backButton = new QPushButton(layoutWidget);
+    backButton->setObjectName(QString::fromUtf8("backButton"));
+    
+    verticalLayout_2->addWidget(backButton);
 
     retranslateUi(SignUpDialog);
 
     QMetaObject::connectSlotsByName(SignUpDialog);
-} // setupUi
+}
+
+void SignUpDialog::on_backButton_clicked() {
+    close();
+    emit showMainWindow();
+}
+// setupUi
