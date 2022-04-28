@@ -20,15 +20,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
 MainWindow::~MainWindow() {
     delete centralwidget;
-    delete verticalLayout;
-    delete label;
-    delete Login;
-    delete SignUp;
-    delete Exit;
-    delete horizontalSpacer;
-    delete horizontalSpacer_2;
-    delete menubar;
-    delete statusbar;
 }
 
 void MainWindow::setupUi(QMainWindow *MainWindow) {

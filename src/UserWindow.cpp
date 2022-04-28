@@ -11,13 +11,6 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
 UserWindow::~UserWindow()
 {
     delete centralwidget;
-    delete groupBox;
-    delete widget;
-    delete verticalLayout;
-    delete playButton;
-    delete volumeSlider;
-    delete menubar;
-    delete statusbar;
 }
 
 void UserWindow::on_playButton_clicked()
