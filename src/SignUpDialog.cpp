@@ -33,6 +33,10 @@ void SignUpDialog::on_signupButton_clicked() {
         QMessageBox::information(this, "Успех!", "Вы успешно зарегистрированы!");
         close();
         emit showUserWindow();
+    } else if (log.isEmpty()) {
+        QMessageBox::warning(this, "Ошибка!", "Логин не может быть пустым!");
+    } else {
+        QMessageBox::warning(this, "Ошибка!", "Пароли не совпадают!");
     }
 }
 
