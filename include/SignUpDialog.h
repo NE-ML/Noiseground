@@ -23,21 +23,21 @@ private slots:
     void on_backButton_clicked();
     
 private:
-    QGroupBox *groupBox;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout_2;
-    QVBoxLayout *verticalLayout;
-    QGridLayout *gridLayout;
-    QLabel *label;
-    QLineEdit *login;
-    QGridLayout *gridLayout_2;
-    QLineEdit *pass;
-    QLabel *label_2;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_3;
-    QLineEdit *pass_repeat;
-    QPushButton *signupButton;
-    QPushButton *backButton;
+    QGroupBox *groupBox = nullptr;
+    QWidget *layoutWidget = nullptr;
+    QVBoxLayout *verticalLayout_2 = nullptr;
+    QVBoxLayout *verticalLayout = nullptr;
+    QGridLayout *gridLayout = nullptr;
+    QLabel *label = nullptr;
+    QLineEdit *login = nullptr;
+    QGridLayout *gridLayout_2 = nullptr;
+    QLineEdit *pass = nullptr;
+    QLabel *label_2 = nullptr;
+    QHBoxLayout *horizontalLayout_3 = nullptr;
+    QLabel *label_3 = nullptr;
+    QLineEdit *pass_repeat = nullptr;
+    QPushButton *signupButton = nullptr;
+    QPushButton *backButton = nullptr;
     
     void setupUi(QDialog *SignUpDialog);
 

@@ -28,15 +28,15 @@ private slots:
     void on_logoutButton_clicked();
 
 private:
-    QWidget *centralwidget;
-    QGroupBox *groupBox;
-    QWidget *widget;
-    QVBoxLayout *verticalLayout;
-    QPushButton *playButton;
-    QSlider *volumeSlider;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
-    QPushButton *logoutButton;
+    QWidget *centralwidget = nullptr;
+    QGroupBox *groupBox = nullptr;
+    QWidget *widget = nullptr;
+    QVBoxLayout *verticalLayout = nullptr;
+    QPushButton *playButton = nullptr;
+    QSlider *volumeSlider = nullptr;
+    QMenuBar *menubar = nullptr;
+    QStatusBar *statusbar = nullptr;
+    QPushButton *logoutButton = nullptr;
 
     void setupUi(QMainWindow *UserWindow);
 

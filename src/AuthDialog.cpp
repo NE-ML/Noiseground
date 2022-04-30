@@ -8,8 +8,7 @@ AuthDialog::AuthDialog(QWidget *parent) : QDialog(parent) {
     setupUi(this);
 }
 
-AuthDialog::~AuthDialog()
-{
+AuthDialog::~AuthDialog() {
     delete label;
     delete label_2;
     delete label_3;
@@ -22,8 +21,7 @@ AuthDialog::~AuthDialog()
     delete horizontalLayout_2;
 }
 
-void AuthDialog::on_loginButton_clicked()
-{
+void AuthDialog::on_loginButton_clicked() {
     QString log = login->text();
     QString pass = password->text();
     // send data to server
@@ -31,7 +29,7 @@ void AuthDialog::on_loginButton_clicked()
     // if (response) {
     //     proceed
     // } else {
-           QMessageBox::warning(this, "Ошибка авторизации", "Пароль неверный");
+    QMessageBox::warning(this, "Ошибка авторизации", "Пароль неверный");
     // }
 }
 
@@ -98,10 +96,10 @@ void AuthDialog::setupUi(QDialog *AuthDialog) {
     loginButton->setObjectName(QString::fromUtf8("loginButton"));
 
     verticalLayout->addWidget(loginButton);
-    
+
     backButton = new QPushButton(layoutWidget);
     backButton->setObjectName(QString::fromUtf8("backButton"));
-    
+
     verticalLayout->addWidget(backButton);
 
     retranslateUi(AuthDialog);
@@ -111,11 +109,17 @@ void AuthDialog::setupUi(QDialog *AuthDialog) {
 
 void AuthDialog::retranslateUi(QDialog *AuthDialog) {
     AuthDialog->setWindowTitle(QCoreApplication::translate("AuthDialog", "Dialog", nullptr));
-    label->setText(QCoreApplication::translate("AuthDialog", "<html><head/><body><p align=\"center\">\320\236\320\272\320\275\320\276 \320\260\320\262\321\202\320\276\321\200\320\270\320\267\320\260\321\206\320\270\320\270</p></body></html>", nullptr));
-    groupBox->setTitle(QCoreApplication::translate("AuthDialog", "\320\220\320\262\321\202\320\276\321\200\320\270\320\267\320\260\321\206\320\270\321\217", nullptr));
+    label->setText(QCoreApplication::translate("AuthDialog",
+                                               "<html><head/><body><p align=\"center\">\320\236\320\272\320\275\320\276 \320\260\320\262\321\202\320\276\321\200\320\270\320\267\320\260\321\206\320\270\320\270</p></body></html>",
+                                               nullptr));
+    groupBox->setTitle(QCoreApplication::translate("AuthDialog",
+                                                   "\320\220\320\262\321\202\320\276\321\200\320\270\320\267\320\260\321\206\320\270\321\217",
+                                                   nullptr));
     label_2->setText(QCoreApplication::translate("AuthDialog", "\320\233\320\276\320\263\320\270\320\275", nullptr));
-    label_3->setText(QCoreApplication::translate("AuthDialog", "\320\237\320\260\321\200\320\276\320\273\321\214", nullptr));
-    loginButton->setText(QCoreApplication::translate("AuthDialog", "\320\222\320\276\320\271\321\202\320\270", nullptr));
+    label_3->setText(
+            QCoreApplication::translate("AuthDialog", "\320\237\320\260\321\200\320\276\320\273\321\214", nullptr));
+    loginButton->setText(
+            QCoreApplication::translate("AuthDialog", "\320\222\320\276\320\271\321\202\320\270", nullptr));
     backButton->setText(QCoreApplication::translate("AuthDialog", "Назад", nullptr));
 }
 

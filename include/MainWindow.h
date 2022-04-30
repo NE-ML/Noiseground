@@ -15,6 +15,8 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    
+    // TODO: getSignUpButton();
 
 private slots:
     void on_Exit_clicked();
@@ -24,19 +26,18 @@ private slots:
     void on_SignUp_clicked();
 
 private:
-    AuthDialog *auth;
-    SignUpDialog *signupButton;
-    
-    QWidget *centralwidget;
-    QVBoxLayout *verticalLayout;
-    QLabel *label;
-    QPushButton *Login;
-    QSpacerItem *horizontalSpacer;
-    QPushButton *SignUp;
-    QSpacerItem *horizontalSpacer_2;
-    QPushButton *Exit;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
+    AuthDialog *auth = nullptr;
+    SignUpDialog *signupButton = nullptr;
+    QWidget *centralwidget = nullptr;
+    QVBoxLayout *verticalLayout = nullptr;
+    QLabel *label = nullptr;
+    QPushButton *Login = nullptr;
+    QSpacerItem *horizontalSpacer = nullptr;
+    QPushButton *SignUp = nullptr;
+    QSpacerItem *horizontalSpacer_2 = nullptr;
+    QPushButton *Exit = nullptr;
+    QMenuBar *menubar = nullptr;
+    QStatusBar *statusbar = nullptr;
     
     void setupUi(QMainWindow *MainWindow);
 

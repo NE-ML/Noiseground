@@ -12,7 +12,7 @@ class AuthDialog : public QDialog {
 
 public:
     explicit AuthDialog(QWidget *parent = nullptr);
-    ~AuthDialog();
+    ~AuthDialog() override;
 
 signals:
     void showMainWindow();
@@ -22,18 +22,18 @@ private slots:
     void on_backButton_clicked();
 
 private:
-    QLabel *label;
-    QGroupBox *groupBox;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label_2;
-    QLineEdit *login;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label_3;
-    QLineEdit *password;
-    QPushButton *loginButton;
-    QPushButton *backButton;
+    QLabel *label = nullptr;
+    QGroupBox *groupBox = nullptr;
+    QWidget *layoutWidget = nullptr;
+    QVBoxLayout *verticalLayout = nullptr;
+    QHBoxLayout *horizontalLayout = nullptr;
+    QLabel *label_2 = nullptr;
+    QLineEdit *login = nullptr;
+    QHBoxLayout *horizontalLayout_2 = nullptr;
+    QLabel *label_3 = nullptr;
+    QLineEdit *password = nullptr;
+    QPushButton *loginButton = nullptr;
+    QPushButton *backButton = nullptr;
     
     void setupUi(QDialog *AuthDialog);
 

@@ -7,11 +7,12 @@
 class UIManager {
 public:
     UIManager();
-    ~UIManager() =  default;
+    ~UIManager() = default;
     void showMainWindow();
     void showUserWindow();
 private:
-    MainWindow mainWindow;
+    // TODO: @levbara
+    MainWindow mainWindow; // Передавать в конструктор UIManager извне
     UserWindow userWindow;
 };
 

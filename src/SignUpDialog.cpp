@@ -42,11 +42,21 @@ void SignUpDialog::on_signupButton_clicked() {
 
 void SignUpDialog::retranslateUi(QDialog *SignUpDialog) {
     SignUpDialog->setWindowTitle(QCoreApplication::translate("SignUpDialog", "Dialog", nullptr));
-    groupBox->setTitle(QCoreApplication::translate("SignUpDialog", "\320\240\320\265\320\263\320\270\321\201\321\202\321\200\320\260\321\206\320\270\321\217", nullptr));
-    label->setText(QCoreApplication::translate("SignUpDialog", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\273\320\276\320\263\320\270\320\275", nullptr));
-    label_2->setText(QCoreApplication::translate("SignUpDialog", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214", nullptr));
-    label_3->setText(QCoreApplication::translate("SignUpDialog", "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214", nullptr));
-    signupButton->setText(QCoreApplication::translate("SignUpDialog", "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217", nullptr));
+    groupBox->setTitle(QCoreApplication::translate("SignUpDialog",
+                                                   "\320\240\320\265\320\263\320\270\321\201\321\202\321\200\320\260\321\206\320\270\321\217",
+                                                   nullptr));
+    label->setText(QCoreApplication::translate("SignUpDialog",
+                                               "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\273\320\276\320\263\320\270\320\275",
+                                               nullptr));
+    label_2->setText(QCoreApplication::translate("SignUpDialog",
+                                                 "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
+                                                 nullptr));
+    label_3->setText(QCoreApplication::translate("SignUpDialog",
+                                                 "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
+                                                 nullptr));
+    signupButton->setText(QCoreApplication::translate("SignUpDialog",
+                                                      "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217",
+                                                      nullptr));
     backButton->setText(QCoreApplication::translate("SignUpDialog", "Назад", nullptr));
 }
 
@@ -122,7 +132,7 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
 
     backButton = new QPushButton(layoutWidget);
     backButton->setObjectName(QString::fromUtf8("backButton"));
-    
+
     verticalLayout_2->addWidget(backButton);
 
     retranslateUi(SignUpDialog);

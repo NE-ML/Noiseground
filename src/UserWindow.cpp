@@ -8,13 +8,11 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
     setupUi(this);
 }
 
-UserWindow::~UserWindow()
-{
+UserWindow::~UserWindow() {
     delete centralwidget;
 }
 
-void UserWindow::on_playButton_clicked()
-{
+void UserWindow::on_playButton_clicked() {
 
 }
 
@@ -63,7 +61,7 @@ void UserWindow::setupUi(QMainWindow *UserWindow) {
 
 void UserWindow::retranslateUi(QMainWindow *UserWindow) {
     UserWindow->setWindowTitle(QCoreApplication::translate("UserWindow", "MainWindow", nullptr));
-    groupBox->setTitle(QCoreApplication::translate("UserWindow", "GroupBox", nullptr));
+    groupBox->setTitle(QCoreApplication::translate("UserWindow", "AudioName", nullptr));
     playButton->setText(QCoreApplication::translate("UserWindow", "Play", nullptr));
     logoutButton->setText(QCoreApplication::translate("UserWindow", "Logout", nullptr));
 }
