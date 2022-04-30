@@ -7,21 +7,25 @@
 #include <QPushButton>
 #include <QSlider>
 
-QT_BEGIN_NAMESPACE
+/*QT_BEGIN_NAMESPACE
 namespace Ui {
     class UserWindow;
 }
-QT_END_NAMESPACE
+QT_END_NAMESPACE*/
 
 class UserWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     explicit UserWindow(QWidget *parent = nullptr);
-    ~UserWindow();
+    ~UserWindow() override;
 
+signals:
+    void logout();
+    
 private slots:
     void on_playButton_clicked();
+    void on_logoutButton_clicked();
 
 private:
     QWidget *centralwidget;
@@ -32,10 +36,13 @@ private:
     QSlider *volumeSlider;
     QMenuBar *menubar;
     QStatusBar *statusbar;
+    QPushButton *logoutButton;
 
     void setupUi(QMainWindow *UserWindow);
 
     void retranslateUi(QMainWindow *UserWindow);
+    
+    friend class UIManager;
 };
 
 #endif // USERWINDOW_H

@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+
 #include "AuthDialog.h"
 #include "SignUpDialog.h"
 
@@ -40,5 +41,7 @@ private:
     void setupUi(QMainWindow *MainWindow);
 
     void retranslateUi(QMainWindow *MainWindow);
+
+    friend class UIManager;
 };
 #endif // MAINWINDOW_H

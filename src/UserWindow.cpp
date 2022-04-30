@@ -53,6 +53,9 @@ void UserWindow::setupUi(QMainWindow *UserWindow) {
     statusbar->setObjectName(QString::fromUtf8("statusbar"));
     UserWindow->setStatusBar(statusbar);
 
+    logoutButton = new QPushButton(centralwidget);
+    logoutButton->setObjectName(QString::fromUtf8("logoutButton"));
+
     retranslateUi(UserWindow);
 
     QMetaObject::connectSlotsByName(UserWindow);
@@ -62,6 +65,13 @@ void UserWindow::retranslateUi(QMainWindow *UserWindow) {
     UserWindow->setWindowTitle(QCoreApplication::translate("UserWindow", "MainWindow", nullptr));
     groupBox->setTitle(QCoreApplication::translate("UserWindow", "GroupBox", nullptr));
     playButton->setText(QCoreApplication::translate("UserWindow", "Play", nullptr));
-} // retranslateUi
+    logoutButton->setText(QCoreApplication::translate("UserWindow", "Logout", nullptr));
+}
+
+void UserWindow::on_logoutButton_clicked() {
+    close();
+    emit logout();
+}
+// retranslateUi
 
 

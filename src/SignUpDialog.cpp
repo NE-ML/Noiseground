@@ -2,6 +2,7 @@
 
 #include <QCoreApplication>
 #include <QPushButton>
+#include <QMessageBox>
 
 SignUpDialog::SignUpDialog(QWidget *parent) : QDialog(parent) {
     setupUi(this);
@@ -23,11 +24,16 @@ SignUpDialog::~SignUpDialog() {
     delete signupButton;
 }
 
-void SignUpDialog::on_signup_clicked() {
+void SignUpDialog::on_signupButton_clicked() {
     QString log = login->text();
     QString pass = this->pass->text();
     QString pass_repeat = this->pass_repeat->text();
     // Some logic then
+    if (pass == pass_repeat && !log.isEmpty()) {
+        QMessageBox::information(this, "Успех!", "Вы успешно зарегистрированы!");
+        close();
+        emit showUserWindow();
+    }
 }
 
 void SignUpDialog::retranslateUi(QDialog *SignUpDialog) {
@@ -74,6 +80,7 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
     gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
     pass = new QLineEdit(layoutWidget);
     pass->setObjectName(QString::fromUtf8("pass"));
+    pass->setEchoMode(QLineEdit::Password);
 
     gridLayout_2->addWidget(pass, 0, 1, 1, 1);
 
@@ -94,6 +101,7 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
 
     pass_repeat = new QLineEdit(layoutWidget);
     pass_repeat->setObjectName(QString::fromUtf8("pass_repeat"));
+    pass_repeat->setEchoMode(QLineEdit::Password);
 
     horizontalLayout_3->addWidget(pass_repeat);
 

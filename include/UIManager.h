@@ -6,7 +6,7 @@
 
 class UIManager {
 public:
-    UIManager() = default;
+    UIManager();
     ~UIManager() =  default;
     void showMainWindow();
     void showUserWindow();

@@ -16,9 +16,10 @@ public:
 
 signals:
     void showMainWindow();
+    void showUserWindow();
     
 private slots:
-    void on_signup_clicked();
+    void on_signupButton_clicked();
     void on_backButton_clicked();
     
 private:
