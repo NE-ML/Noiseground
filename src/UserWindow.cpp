@@ -71,5 +71,3 @@ void UserWindow::on_logoutButton_clicked() {
     emit logout();
 }
 // retranslateUi
-
-

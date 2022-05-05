@@ -28,14 +28,14 @@ private:
     QVBoxLayout *verticalLayout_2 = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
     QGridLayout *gridLayout = nullptr;
-    QLabel *label = nullptr;
+    QLabel *enterLoginLabel = nullptr;
     QLineEdit *login = nullptr;
     QGridLayout *gridLayout_2 = nullptr;
     QLineEdit *pass = nullptr;
-    QLabel *label_2 = nullptr;
+    QLabel *enterPasswordLabel = nullptr;
     QHBoxLayout *horizontalLayout_3 = nullptr;
-    QLabel *label_3 = nullptr;
-    QLineEdit *pass_repeat = nullptr;
+    QLabel *repeatPasswordLabel = nullptr;
+    QLineEdit *passRepeat = nullptr;
     QPushButton *signupButton = nullptr;
     QPushButton *backButton = nullptr;
     

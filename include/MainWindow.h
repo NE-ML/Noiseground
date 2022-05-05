@@ -16,7 +16,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     
-    // TODO: getSignUpButton();
+    SignUpDialog *getSignUpDialog();
 
 private slots:
     void on_Exit_clicked();

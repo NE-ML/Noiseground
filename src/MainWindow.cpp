@@ -117,3 +117,7 @@ void MainWindow::on_SignUp_clicked() {
     hide();
     signupButton->exec();
 }
+
+SignUpDialog *MainWindow::getSignUpDialog() {
+    return signupButton;
+}

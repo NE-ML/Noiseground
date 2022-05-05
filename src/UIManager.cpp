@@ -12,6 +12,6 @@ void UIManager::showUserWindow() {
 }
 
 UIManager::UIManager() {
-    QObject::connect(mainWindow.signupButton, &SignUpDialog::showUserWindow, &userWindow, &UserWindow::show);
+    QObject::connect(mainWindow.getSignUpDialog(), &SignUpDialog::showUserWindow, &userWindow, &UserWindow::show);
     QObject::connect(&userWindow, &UserWindow::logout, &mainWindow, &MainWindow::show);
 }

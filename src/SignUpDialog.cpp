@@ -15,11 +15,11 @@ SignUpDialog::~SignUpDialog() {
     delete verticalLayout_2;
     delete gridLayout;
     delete gridLayout_2;
-    delete label;
-    delete label_2;
-    delete label_3;
+    delete enterLoginLabel;
+    delete enterPasswordLabel;
+    delete repeatPasswordLabel;
     delete pass;
-    delete pass_repeat;
+    delete passRepeat;
     delete login;
     delete signupButton;
 }
@@ -27,9 +27,9 @@ SignUpDialog::~SignUpDialog() {
 void SignUpDialog::on_signupButton_clicked() {
     QString log = login->text();
     QString pass = this->pass->text();
-    QString pass_repeat = this->pass_repeat->text();
+    QString passRepeat = this->passRepeat->text();
     // Some logic then
-    if (pass == pass_repeat && !log.isEmpty()) {
+    if (pass == passRepeat && !log.isEmpty()) {
         QMessageBox::information(this, "Успех!", "Вы успешно зарегистрированы!");
         close();
         emit showUserWindow();
@@ -45,13 +45,13 @@ void SignUpDialog::retranslateUi(QDialog *SignUpDialog) {
     groupBox->setTitle(QCoreApplication::translate("SignUpDialog",
                                                    "\320\240\320\265\320\263\320\270\321\201\321\202\321\200\320\260\321\206\320\270\321\217",
                                                    nullptr));
-    label->setText(QCoreApplication::translate("SignUpDialog",
+    enterLoginLabel->setText(QCoreApplication::translate("SignUpDialog",
                                                "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\273\320\276\320\263\320\270\320\275",
                                                nullptr));
-    label_2->setText(QCoreApplication::translate("SignUpDialog",
+    enterPasswordLabel->setText(QCoreApplication::translate("SignUpDialog",
                                                  "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
                                                  nullptr));
-    label_3->setText(QCoreApplication::translate("SignUpDialog",
+    repeatPasswordLabel->setText(QCoreApplication::translate("SignUpDialog",
                                                  "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
                                                  nullptr));
     signupButton->setText(QCoreApplication::translate("SignUpDialog",
@@ -77,10 +77,10 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
     verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
     gridLayout = new QGridLayout();
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-    label = new QLabel(layoutWidget);
-    label->setObjectName(QString::fromUtf8("label"));
+    enterLoginLabel = new QLabel(layoutWidget);
+    enterLoginLabel->setObjectName(QString::fromUtf8("enterLoginLabel"));
 
-    gridLayout->addWidget(label, 0, 0, 1, 1);
+    gridLayout->addWidget(enterLoginLabel, 0, 0, 1, 1);
 
     login = new QLineEdit(layoutWidget);
     login->setObjectName(QString::fromUtf8("login"));
@@ -98,26 +98,26 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
 
     gridLayout_2->addWidget(pass, 0, 1, 1, 1);
 
-    label_2 = new QLabel(layoutWidget);
-    label_2->setObjectName(QString::fromUtf8("label_2"));
+    enterPasswordLabel = new QLabel(layoutWidget);
+    enterPasswordLabel->setObjectName(QString::fromUtf8("enterPasswordLabel"));
 
-    gridLayout_2->addWidget(label_2, 0, 0, 1, 1);
+    gridLayout_2->addWidget(enterPasswordLabel, 0, 0, 1, 1);
 
 
     verticalLayout->addLayout(gridLayout_2);
 
     horizontalLayout_3 = new QHBoxLayout();
     horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-    label_3 = new QLabel(layoutWidget);
-    label_3->setObjectName(QString::fromUtf8("label_3"));
+    repeatPasswordLabel = new QLabel(layoutWidget);
+    repeatPasswordLabel->setObjectName(QString::fromUtf8("repeatPasswordLabel"));
 
-    horizontalLayout_3->addWidget(label_3);
+    horizontalLayout_3->addWidget(repeatPasswordLabel);
 
-    pass_repeat = new QLineEdit(layoutWidget);
-    pass_repeat->setObjectName(QString::fromUtf8("pass_repeat"));
-    pass_repeat->setEchoMode(QLineEdit::Password);
+    passRepeat = new QLineEdit(layoutWidget);
+    passRepeat->setObjectName(QString::fromUtf8("passRepeat"));
+    passRepeat->setEchoMode(QLineEdit::Password);
 
-    horizontalLayout_3->addWidget(pass_repeat);
+    horizontalLayout_3->addWidget(passRepeat);
 
 
     verticalLayout->addLayout(horizontalLayout_3);
