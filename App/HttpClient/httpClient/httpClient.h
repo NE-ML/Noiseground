@@ -1,7 +1,6 @@
 #ifndef NOISEGROUND_HTTPCLIENT_H
 #define NOISEGROUND_HTTPCLIENT_H
 
-
 #include <boost/asio.hpp>
 #include <utility>
 
@@ -17,10 +16,11 @@ public:
     ResponseStruct makeDeleteRequest(const Host& host, const std::string& target,
                                   Params* params = nullptr, Params* headers = nullptr);
 private:
-    ResponseStruct parseResponse(Response response);
-    std::string createURL(const Host& host, const std::string& target, Params* params = nullptr);
+    static ResponseStruct parseResponse(Response response);
+    static std::string createURL(const std::string& target, Params* params = nullptr);
     bool connect(unsigned short port);
 
+    boost::asio::io_context context;
     boost::asio::ip::tcp::resolver resolver;
     boost::asio::ip::tcp::socket socket;
     std::string ip;

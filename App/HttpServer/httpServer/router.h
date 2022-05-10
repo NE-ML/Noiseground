@@ -1,22 +1,20 @@
 #ifndef HTTPCLIENT_ROUTER_H
 #define HTTPCLIENT_ROUTER_H
 
+#include <boost/noncopyable.hpp>
+
 #include "userManager.h"
 #include "soundManager.h"
 #include "serverTypes.h"
+#include "reply.h"
 
-class Router {
+class Router : private boost::noncopyable {
 public:
-    Router(UserManager *userManager, SoundManager *soundManager);
-    Router() = default;
-    virtual ~Router() = default;
-    ResponseServer execute(RequestServer &request);
+    explicit Router(std::string doc_root);
+    void handle_request(const Request& req, Reply& rep);
 private:
-    UserManager *userManager = new UserManager();
-    SoundManager *soundManager = new SoundManager();
-
-    const std::string userPath = "/user";
-    const std::string soundPath = "/sound";
+    std::string doc_root_;
+    static bool url_decode(const std::string& in, std::string& out);
 };
 
 

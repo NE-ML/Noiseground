@@ -12,8 +12,7 @@ set(Boost_USE_STATIC_LIBS        ON)
 set(Boost_USE_MULTITHREADED      ON)
 
 if(Boost_FOUND)
-
     include_directories(${Boost_INCLUDE_DIRS})
-    add_executable(httpClient_run main.cpp)
+    add_executable(httpClient_run main.cpp httpClient/httpClient.cpp)
     target_link_libraries(httpClient_run ${Boost_LIBRARIES})
 endif()

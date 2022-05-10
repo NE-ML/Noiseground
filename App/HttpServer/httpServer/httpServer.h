@@ -2,24 +2,28 @@
 #define HTTPCLIENT_HTTPSERVER_H
 
 #include <boost/asio.hpp>
+#include <string>
+#include <boost/noncopyable.hpp>
 
+#include "httpConnection.h"
 #include "router.h"
 
-class HttpServer {
+class HttpServer : private boost::noncopyable {
 public:
-    HttpServer(const std::string& address, int port);
+    HttpServer(const std::string& address, const std::string& port,
+               const std::string& doc_root, std::size_t thread_pool_size);
     void run();
 private:
-    void accept();
-    boost::asio::ip::tcp::endpoint endpoint;
-    boost::asio::io_service io_service;
-    boost::asio::ip::tcp::socket socket;
-    boost::asio::ip::tcp::acceptor acceptor;
+    void start_accept();
+    void handle_accept(const boost::system::error_code& e);
+    void handle_stop();
 
-    UserManager* user_manager;
-    SoundManager* sound_manager;
-
-    Router router;
+    std::size_t thread_pool_size_;
+    boost::asio::io_service io_service_;
+    boost::asio::signal_set signals_;
+    boost::asio::ip::tcp::acceptor acceptor_;
+    HttpConnection_ptr connection_;
+    Router router_;
 };
 
 

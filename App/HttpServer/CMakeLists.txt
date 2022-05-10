@@ -3,22 +3,21 @@ project(httpServer)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(httpServer)
+set(BOOST_ROOT /usr/local/include/boost)
 
-add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
-
-find_package(Boost 1.68.0 REQUIRED)
+find_package(Boost 1.76.0 REQUIRED)
 set(Boost_USE_STATIC_LIBS        ON)
 set(Boost_USE_MULTITHREADED      ON)
 
 if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS} httpServer/managers)
+    include_directories(${Boost_INCLUDE_DIR} httpServer httpServer/managers ../httpClient/httpClient)
 
-    add_library(httpServer httpServer/httpServer.cpp httpServer/httpConnection.cpp httpServer/router.cpp)
-    add_library(UserManager httpServer/managers/userManager.cpp httpServer/managers/serializer.cpp)
-    add_library(SoundManager httpServer/managers/soundManager.cpp httpServer/managers/serializer.cpp)
+#    add_library(UserManager httpServer/managers/userManager.cpp httpServer/managers/serializer.cpp)
+#    add_library(SoundManager httpServer/managers/soundManager.cpp httpServer/managers/serializer.cpp)
 
-    target_link_libraries(httpServer UserManager SoundManager)
+    add_library(httpServer httpServer/httpServer.cpp httpServer/httpConnection.cpp httpServer/router.cpp
+                            httpServer/parser.cpp httpServer/reply.cpp)
+#    target_link_libraries(httpServer)
 
     add_executable(httpServer_run main.cpp)
     target_link_libraries(httpServer_run httpServer)
