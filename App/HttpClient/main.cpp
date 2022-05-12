@@ -4,9 +4,9 @@
 
 int main() {
     const std::string domainExample;
-    const std::string ipExample = "127.0.0.1";
-    const unsigned short portExample = 8000;
-    const std::string targetExample = "/sound/get_standart";
+    const std::string ipExample = "0.0.0.0";
+    const unsigned short portExample = 80;
+    const std::string targetExample = "/";
 
     auto *client = new HttpClient();
 

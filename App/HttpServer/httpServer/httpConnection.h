@@ -9,7 +9,7 @@
 #include <boost/enable_shared_from_this.hpp>
 
 #include "reply.h"
-#include "serverTypes.h"
+#include "request.h"
 #include "router.h"
 #include "parser.h"
 

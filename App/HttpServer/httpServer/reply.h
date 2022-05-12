@@ -5,7 +5,7 @@
 #include <vector>
 #include <boost/asio.hpp>
 
-#include "serverTypes.h"
+#include "header.h"
 
 struct Reply
 {

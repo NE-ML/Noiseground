@@ -1,10 +1,13 @@
+#include "router.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <boost/lexical_cast.hpp>
 #include <utility>
 
-#include "router.h"
+#include "mime_types.h"
+#include "reply.h"
 
 Router::Router(std::string doc_root)
         : doc_root_(std::move(doc_root)) {}

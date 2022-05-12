@@ -1,7 +1,7 @@
+#include "reply.h"
+
 #include <string>
 #include <boost/lexical_cast.hpp>
-
-#include "reply.h"
 
 namespace status_strings {
 

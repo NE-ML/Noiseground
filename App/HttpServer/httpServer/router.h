@@ -1,12 +1,13 @@
 #ifndef HTTPCLIENT_ROUTER_H
 #define HTTPCLIENT_ROUTER_H
 
+#include <string>
 #include <boost/noncopyable.hpp>
 
 #include "userManager.h"
 #include "soundManager.h"
-#include "serverTypes.h"
 #include "reply.h"
+#include "request.h"
 
 class Router : private boost::noncopyable {
 public:

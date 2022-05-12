@@ -1,9 +1,9 @@
+#include "httpServer.h"
+
 #include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
 #include <vector>
-
-#include "httpServer.h"
 
 HttpServer::HttpServer(const std::string& address, const std::string& port,
                const std::string& doc_root, std::size_t thread_pool_size)

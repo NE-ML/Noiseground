@@ -1,5 +1,5 @@
 #include "parser.h"
-#include "serverTypes.h"
+#include "request.h"
 
 Parser::Parser()
         : state_(method_start) {}

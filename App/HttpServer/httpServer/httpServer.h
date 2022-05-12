@@ -3,7 +3,9 @@
 
 #include <boost/asio.hpp>
 #include <string>
+#include <vector>
 #include <boost/noncopyable.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "httpConnection.h"
 #include "router.h"

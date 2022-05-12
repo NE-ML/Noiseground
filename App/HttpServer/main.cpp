@@ -1,6 +1,4 @@
 #include <iostream>
-#include <string>
-#include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/lexical_cast.hpp>
 
@@ -9,6 +7,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+    std::cout << 2;
     try
     {
         if (argc != 5)
@@ -21,8 +20,12 @@ int main(int argc, char* argv[]) {
             return 1;
         }
 
+        std::cout << 1;
+
         auto num_threads = boost::lexical_cast<std::size_t>(argv[3]);
         HttpServer s(argv[1], argv[2], argv[4], num_threads);
+
+        std::cout << 1;
 
         s.run();
     }
