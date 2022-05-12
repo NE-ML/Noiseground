@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QSlider>
+#include <QScrollArea>
 
 /*QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,7 +29,10 @@ private slots:
     void on_logoutButton_clicked();
 
 private:
-    QWidget *centralwidget = nullptr;
+    void drawSounds(const std::vector<std::string> &soundNames);
+    
+    std::vector<QString> soundNames;
+    
     QGroupBox *groupBox = nullptr;
     QWidget *widget = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
@@ -37,6 +41,16 @@ private:
     QMenuBar *menubar = nullptr;
     QStatusBar *statusbar = nullptr;
     QPushButton *logoutButton = nullptr;
+    
+    QScrollArea *scrollArea = nullptr;
+    QWidget *scrollAreaWidgetContents = nullptr;
+    
+    QGridLayout *gridLayout = nullptr;
+    QGridLayout *gridLayout_2 = nullptr;
+    
+    QWidget *centralwidget = nullptr;
+    
+    QPushButton *pushButton = nullptr;
 
     void setupUi(QMainWindow *UserWindow);
 

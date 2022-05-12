@@ -19,14 +19,18 @@ set(UI_SOURCES
         src/AuthDialog.cpp
         src/SignUpDialog.cpp
         src/UserWindow.cpp
-        src/UIManager.cpp)
+        src/UIManager.cpp
+        src/SoundBox.cpp
+        src/PlayPauseButton.cpp)
 
 set(UI_HEADERS
         include/MainWindow.h
         include/AuthDialog.h
         include/SignUpDialog.h
         include/UserWindow.h
-        include/UIManager.h)
+        include/UIManager.h
+        include/SoundBox.h
+        include/PlayPauseButton.h)
 
 add_executable(${PROJECT_NAME} src/main.cpp ${UI_SOURCES} ${UI_HEADERS})
 
