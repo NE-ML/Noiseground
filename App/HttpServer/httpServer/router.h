@@ -18,7 +18,6 @@ private:
     SoundManager* soundManager = new SoundManager();
     UserManager* userManager = new UserManager();
     static bool url_decode(const std::string& in, std::string& out);
-    static std::string get_header(const std::string& path, const std::string& name);
 };
 
 

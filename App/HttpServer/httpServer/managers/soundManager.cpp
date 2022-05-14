@@ -1,23 +1,13 @@
 #include "soundManager.h"
 
-#include <fstream>
-#include <sstream>
+#include <boost/lexical_cast.hpp>
+#include <sound.h>
 
-std::string SoundManager::readFile(const std::string& fileName) {
-    std::ifstream f(fileName);
-    std::stringstream ss;
-    ss << f.rdbuf();
-    f.close();
-    return ss.str();
-}
-
-std::string SoundManager::getStdSounds() {
-    std::vector<Sound> res(standardNames.size());
-    int k = 0;
-    for (auto &i : standardNames) {
-        res[k].name = i;
-        res[k].content = readFile("../data/sounds" + i);
-        k++;
-    }
-    return serializer->serialSounds(res);
+void SoundManager::getStdSounds(Reply& rep) {
+    auto res = soundModel->getStdSounds();
+    rep.status = Reply::ok;
+    rep.content = serializer->serialSounds(res);
+    rep.headers.resize(1);
+    rep.headers[0].name = "Content-Length";
+    rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
 }

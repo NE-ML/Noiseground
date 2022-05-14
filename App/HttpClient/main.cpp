@@ -8,7 +8,7 @@ int main() {
     const std::string domainExample;
     const std::string ipExample = "0.0.0.0";
     const unsigned short portExample = 80;
-    const std::string targetExample = "/user/auth?login=a&password=b";
+    const std::string targetExample = "/user/auth?login=a&password=c";
 
     auto *client = new HttpClient();
     auto *deserializer = new Deserializer();
@@ -28,7 +28,7 @@ int main() {
 //        std::cout << "Fail with status " << result.status;
 //    }
 
-    std::cout << result.status;
+//    std::cout << result.status;
 
     delete deserializer;
     delete client;

@@ -6,9 +6,6 @@
 
 #include "header.h"
 
-struct UserModel {};
-struct SoundModel {};
-
 struct Request
 {
     std::string method;

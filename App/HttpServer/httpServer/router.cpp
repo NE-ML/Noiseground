@@ -26,31 +26,12 @@ void Router::handle_request(const Request& req, Reply& rep) {
 
     if (req.method == "GET") {
         if (request_path == "/sound/standard") {
-            rep.status = Reply::ok;
-            rep.content = soundManager->getStdSounds();
-            rep.headers.resize(1);
-            rep.headers[0].name = "Content-Length";
-            rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
+            soundManager->getStdSounds(rep);
         }
         if (request_path.find("/user/auth") != std::string::npos) {
-            std::string passwd = get_header(request_path, "password");
-            std::string login = get_header(request_path, "login");
-            if (userManager->loginUser(login, passwd))
-                rep.status = Reply::ok;
-            else
-                rep.status = Reply::forbidden;
+            userManager->loginUser(request_path, rep);
         }
     }
-}
-
-std::string Router::get_header(const std::string& path, const std::string& name) {
-    std::size_t pos = path.find(name, 0);
-    std::size_t pos_equal = path.find('=', pos);
-    std::size_t pos_and = path.find('&', pos_equal);
-    if (pos_and == std::string::npos) {
-        pos_and = path.size();
-    }
-    return path.substr(pos_equal + 1, pos_and - pos_equal - 1);
 }
 
 bool Router::url_decode(const std::string& in, std::string& out) {

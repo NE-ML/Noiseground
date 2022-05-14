@@ -2,16 +2,22 @@
 #define HTTPCLIENT_USERMANAGER_H
 
 #include "user.h"
+#include "userModel.h"
+#include "reply.h"
 
 class UserManager {
 public:
     UserManager() = default;
 //    ResponseServer createUser(const Request &request);
-    bool loginUser(std::string &login, std::string &password);
+    void loginUser(const std::string &request_path, Reply& rep);
 //    ResponseServer changeUser(const Request &request);
+    ~UserManager() {
+//        delete serializer;
+        delete userModel;
+    }
 private:
-//    UserModel* userModel = new UserModel();
-    std::string dataName = "users.txt";
+    UserModel* userModel = new UserModel();
+    static std::string get_header(const std::string& path, const std::string& name);
 };
 
 #endif //HTTPCLIENT_USERMANAGER_H
