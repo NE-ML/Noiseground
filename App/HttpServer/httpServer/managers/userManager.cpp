@@ -1,8 +1,8 @@
 #include "userManager.h"
 
 void UserManager::loginUser(const std::string &request_path, Reply& rep) {
-    std::string passwd = get_header(request_path, "password");
-    std::string login = get_header(request_path, "login");
+    std::string passwd = get_param(request_path, "password");
+    std::string login = get_param(request_path, "login");
     std::vector<User> res = userModel->FindUserWithLogin(login);
     if (!res.empty()) {
         rep.status = Reply::ok;
@@ -26,7 +26,7 @@ void UserManager::createUser(const Request &req, Reply &rep) {
     rep.status = Reply::forbidden;
 }
 
-std::string UserManager::get_header(const std::string& path, const std::string& name) {
+std::string UserManager::get_param(const std::string &path, const std::string &name) {
     std::size_t pos = path.find(name, 0);
     std::size_t pos_equal = path.find('=', pos);
     std::size_t pos_and = path.find('&', pos_equal);

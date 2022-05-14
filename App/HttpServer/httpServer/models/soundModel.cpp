@@ -1,5 +1,6 @@
 #include "soundModel.h"
 
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <boost/filesystem.hpp>
@@ -19,6 +20,20 @@ std::vector<Sound> SoundModel::getStdSounds() {
         res[k].name = i;
         res[k].content = readFile("../data/sounds_standard" + i);
         k++;
+    }
+    return res;
+};
+
+std::vector<Sound> SoundModel::getUserSounds(const std::string& login) {
+    std::string path = "../data/sounds_" + login;
+    std::vector<Sound> res;
+    for (const auto & entry : boost::filesystem::directory_iterator(path)) {
+        Sound tmp;
+        std::string path_string = entry.path().string();
+        std::size_t slash_pos = path_string.rfind("/");
+        tmp.name = path_string.substr(slash_pos + 1, path_string.size() - slash_pos - 1);
+        tmp.content = readFile(path_string);
+        res.push_back(tmp);
     }
     return res;
 };

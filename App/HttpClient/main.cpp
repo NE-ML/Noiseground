@@ -21,7 +21,7 @@ int main() {
     if (result1.status == 200) {
         std::vector<Sound> sounds = serializer->deserialSounds(result1.body);
         for (auto &i : sounds) {
-            std::ofstream fout(i.name);
+            std::ofstream fout("../saved_sounds/" + i.name);
             fout << i.content;
             fout.close();
         }
@@ -87,7 +87,31 @@ int main() {
     ResponseStruct result4 = client->makePostRequest(
             Host(domainExample, ipExample, portExample), targetExample4, body4);
 
-    std::cout << "\n" << result4.status;
+    std::cout << result4.status;
+
+    std::cout << "\n------------\n";
+
+    const std::string targetExample5 = "/sound/get";
+
+    auto* params5 = new Params;
+    params5->insert({"username", login});
+
+    std::cout << targetExample5 << "?username=a" << "\n";
+
+    ResponseStruct result5 = client->makeGetRequest(
+            Host(domainExample, ipExample, portExample), targetExample5, params5);
+
+    if (result5.status == 200) {
+        std::vector<Sound> sounds = serializer->deserialSounds(result5.body);
+        for (auto &i : sounds) {
+            std::ofstream fout("../saved_sounds/" + i.name);
+            fout << i.content;
+            fout.close();
+        }
+        std::cout << "Saved";
+    } else {
+        std::cout << "Fail with status " << result5.status;
+    }
 
     delete body3;
     delete body4;

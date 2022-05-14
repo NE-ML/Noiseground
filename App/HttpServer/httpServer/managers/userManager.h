@@ -20,7 +20,7 @@ public:
 private:
     UserModel* userModel = new UserModel();
     Serializer* serializer = new Serializer();
-    static std::string get_header(const std::string& path, const std::string& name);
+    static std::string get_param(const std::string& path, const std::string& name);
 };
 
 #endif //HTTPCLIENT_USERMANAGER_H
