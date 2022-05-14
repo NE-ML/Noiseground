@@ -1,7 +1,7 @@
 #ifndef NOISEGROUND_SOUND_USERSOUND_H
 #define NOISEGROUND_SOUND_USERSOUND_H
 
-#include <Sound.h>
+#include <Sounds.h>
 
 class UserSound {
 public:

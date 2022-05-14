@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.21)
 project(Noiseground_sound)
 
 set(CMAKE_CXX_STANDARD 20)
-include_directories(headers Frameworks/SFML/include Frameworks/googletest/googletest/include)
+include_directories(Frameworks/googletest/googletest/include)
+
+add_subdirectory(src)
+include_directories(src)
 
 add_executable(Noiseground_sound main.cpp)
 

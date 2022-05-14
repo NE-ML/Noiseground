@@ -1,7 +1,7 @@
 #ifndef NOISEGROUND_SOUND_PRESET_H
 #define NOISEGROUND_SOUND_PRESET_H
 
-#include <Sound.h>
+#include <Sounds.h>
 
 class Preset {
 public:
