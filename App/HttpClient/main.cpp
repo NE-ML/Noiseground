@@ -8,7 +8,7 @@ int main() {
     const std::string domainExample;
     const std::string ipExample = "0.0.0.0";
     const unsigned short portExample = 80;
-    const std::string targetExample = "/sounds/standard";
+    const std::string targetExample = "/user/auth?login=a&password=b";
 
     auto *client = new HttpClient();
     auto *deserializer = new Deserializer();
@@ -16,17 +16,19 @@ int main() {
     ResponseStruct result = client->makeGetRequest(
             Host(domainExample, ipExample, portExample), targetExample);
 
-    if (result.status == 200) {
-        std::vector<Sound> sounds = deserializer->deserialSounds(result.body);
-        for (auto &i : sounds) {
-            std::ofstream fout(i.name);
-            fout << i.content;
-            fout.close();
-        }
-        std::cout << "Saved";
-    } else {
-        std::cout << "Fail with status " << result.status;
-    }
+//    if (result.status == 200) {
+//        std::vector<Sound> sounds = deserializer->deserialSounds(result.body);
+//        for (auto &i : sounds) {
+//            std::ofstream fout(i.name);
+//            fout << i.content;
+//            fout.close();
+//        }
+//        std::cout << "Saved";
+//    } else {
+//        std::cout << "Fail with status " << result.status;
+//    }
+
+    std::cout << result.status;
 
     delete deserializer;
     delete client;

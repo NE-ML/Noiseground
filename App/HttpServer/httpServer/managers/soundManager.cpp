@@ -16,7 +16,7 @@ std::string SoundManager::getStdSounds() {
     int k = 0;
     for (auto &i : standardNames) {
         res[k].name = i;
-        res[k].content = readFile("../sounds/" + i);
+        res[k].content = readFile("../data/sounds" + i);
         k++;
     }
     return serializer->serialSounds(res);

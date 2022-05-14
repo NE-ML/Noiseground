@@ -1,18 +1,17 @@
-//#ifndef HTTPCLIENT_USERMANAGER_H
-//#define HTTPCLIENT_USERMANAGER_H
-//
-//#include "serverTypes.h"
-//#include "serializer.h"
-//
-//class UserManager {
-//public:
-//    UserManager();
+#ifndef HTTPCLIENT_USERMANAGER_H
+#define HTTPCLIENT_USERMANAGER_H
+
+#include "user.h"
+
+class UserManager {
+public:
+    UserManager() = default;
 //    ResponseServer createUser(const Request &request);
-//    ResponseServer loginUser(const Request &request);
+    bool loginUser(std::string &login, std::string &password);
 //    ResponseServer changeUser(const Request &request);
-//private:
+private:
 //    UserModel* userModel = new UserModel();
-//    Serializer* ser = new Serializer();
-//};
-//
-//#endif //HTTPCLIENT_USERMANAGER_H
+    std::string dataName = "users.txt";
+};
+
+#endif //HTTPCLIENT_USERMANAGER_H
