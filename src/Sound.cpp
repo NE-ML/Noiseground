@@ -1,12 +1,6 @@
-#include <utility>
-
 #include "Sounds.h"
 
-//string Sounds::getPath() {
-//    PATH = "music_example/";
-//    return PATH;
-//}
-
+/// Sounds
 void Sounds::playMusic() {
     music.play();
 }
@@ -55,11 +49,19 @@ vector<string> Sounds::getSounds() {
     return vector_of_sound_names;
 }
 
-//Sounds::Sounds(int count, string path) : count(count) {
-//    PATH = move(path);
-//    musics = new Music[count];
-//    for(int i = 0; i < count; i++)
-//        musics[i].
-//}
 
+/// Musics
+void Musics::loadMusics(const string& pathFile) {
+    vector<string> musicNames = Sounds::getSounds();
+    for(int i = 0; i < musicNames.size(); i++)
+        musicMap[i].loadMusic(pathFile + musicNames[i]);
+}
+
+void Musics::play(int id) {
+    musicMap[id].playMusic();
+}
+
+void Musics::pause(int id) {
+    musicMap[id].pauseMusic();
+}
 

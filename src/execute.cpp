@@ -8,6 +8,7 @@ map<int, Keyboard::Key> buttons = {
         {6, Keyboard::Key::Num6}, {7, Keyboard::Key::Num7},
         {8, Keyboard::Key::Num8}, {9, Keyboard::Key::Num9},
         };
+
 void playback(Sounds &music, Keyboard::Key key, Event &event)
 {
     if (event.key.code == key) {
@@ -21,9 +22,11 @@ void playback(Sounds &music, Keyboard::Key key, Event &event)
 void execute() {
     RenderWindow window(VideoMode(640, 480), "Demo Noiseground");
     vector<string> musicNames = Sounds::getSounds();
-    Sounds musics[musicNames.size()];
+    Sounds sounds[musicNames.size()];
+    Musics musics;
+    musics.loadMusics(PATH);
     for(int i = 0; i < musicNames.size(); i++)
-        musics[i].loadMusic(PATH + musicNames[i]);
+        sounds[i].loadMusic(PATH + musicNames[i]);
     while (window.isOpen()) {
         Event event{};
         while (window.pollEvent(event)) {
@@ -34,8 +37,9 @@ void execute() {
                 if (event.key.code == sf::Keyboard::Escape) {
                     window.close();
                 }
+
                 for(int i = 0; i < musicNames.size(); i++)
-                    playback(musics[i], buttons[i+1], event);
+                    playback(sounds[i], buttons[i+1], event);
             }
         }
         window.clear();
