@@ -7,8 +7,6 @@ include_directories(Frameworks/googletest/googletest/include)
 add_subdirectory(src)
 include_directories(src)
 
-add_executable(Noiseground_sound main.cpp)
-
 enable_testing()
 find_package(GTest REQUIRED)
 

@@ -6,7 +6,7 @@ map<int, Keyboard::Key> buttons = {
         {2, Keyboard::Key::Num2}, {3, Keyboard::Key::Num3},
         {4, Keyboard::Key::Num4}, {5, Keyboard::Key::Num5},
         {6, Keyboard::Key::Num6}, {7, Keyboard::Key::Num7},
-        {8, Keyboard::Key::Num8}, {9, Keyboard::Key::Num9},
+        {8, Keyboard::Key::Num8}, {9, Keyboard::Key::Num9}
         };
 
 void playback(Sounds &music, Keyboard::Key key, Event &event)
