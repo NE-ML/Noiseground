@@ -1,18 +1,18 @@
-cmake_minimum_required(VERSION 3.5)
+project(Noiseground)
 
-project(Noiseground LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include_directories(include)
 
 set(UI_SOURCES
         src/MainWindow.cpp
@@ -32,9 +32,13 @@ set(UI_HEADERS
         include/SoundBox.h
         include/PlayPauseButton.h)
 
-add_executable(${PROJECT_NAME} src/main.cpp ${UI_SOURCES} ${UI_HEADERS} src/Core.cpp)
+add_library(UI STATIC ${UI_SOURCES} ${UI_HEADERS})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+target_link_libraries(UI PRIVATE Qt5::Widgets)
+
+add_executable(main src/main.cpp src/Core.cpp)
+
+target_link_libraries(main UI Qt5::Widgets)
 
 enable_testing()
 

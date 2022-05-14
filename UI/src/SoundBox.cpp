@@ -47,7 +47,7 @@ SoundBox::SoundBox(const std::pair<int, std::string> &data) : QGroupBox(), id(da
 
 void SoundBox::volumeChanged(int value) {
     if (playPauseButton->getState() == PPButtonState::Playing) {
-        Core::changeVolume(value);
+        Core::changeVolume(id, value);
     }
 }
 
@@ -57,7 +57,6 @@ void SoundBox::play(int soundId) {
     } else {
         playPauseButton->setState(PPButtonState::Paused);
     }
-    std::cout << volumeSlider->value() << '\n';
 }
 
 void SoundBox::pause(int soundId) {
