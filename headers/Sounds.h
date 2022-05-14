@@ -30,10 +30,10 @@ private:
 class Musics {
 public:
     void loadMusics(const string& pathFile);
-    void play(int id);
+    void play(int id, int volume);
     void pause(int id);
+    void changeVolume(int id, int volume);
 private:
-
     map<int, Sounds> musicMap;
 };
 

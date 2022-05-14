@@ -40,7 +40,8 @@ vector<string> Sounds::getSounds() {
     map<int, string> tracks = {
             {1, "birds.wav"},
             {2, "killdeer.wav"},
-            {3, "ding.flac"}
+            {3, "waves.wav"},
+            {4, "rain.wav"},
     };
     vector<string> vector_of_sound_names;
     for(auto & track : tracks)
@@ -57,11 +58,16 @@ void Musics::loadMusics(const string& pathFile) {
         musicMap[i].loadMusic(pathFile + musicNames[i]);
 }
 
-void Musics::play(int id) {
+void Musics::play(int id, int volume) {
+    musicMap[id].setVolume(volume);
     musicMap[id].playMusic();
 }
 
 void Musics::pause(int id) {
     musicMap[id].pauseMusic();
+}
+
+void Musics::changeVolume(int id, int volume) {
+    musicMap[id].setVolume(volume);
 }
 
