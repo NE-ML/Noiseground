@@ -2,13 +2,14 @@
 #define NOISEGROUND_SOUNDMANAGER_H
 
 #include "reply.h"
+#include "request.h"
 #include "soundModel.h"
 #include "serializer.h"
 
 class SoundManager {
 public:
     SoundManager() = default;
-//    ResponseServer createSound(const Request &request);
+    void createSound(const Request &req, Reply& rep);
 //    ResponseServer getUserSounds(const Request &request);
     void getStdSounds(Reply& rep);
 //    ResponseServer changeSound(const Request &request);

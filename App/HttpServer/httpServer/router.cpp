@@ -1,9 +1,7 @@
 #include "router.h"
 
 #include <iostream>
-#include <fstream>
 #include <string>
-#include <boost/lexical_cast.hpp>
 #include <utility>
 
 #include "mime_types.h"
@@ -34,6 +32,9 @@ void Router::handle_request(const Request& req, Reply& rep) {
     } else if (req.method == "POST") {
         if (request_path.find("/user/register") != std::string::npos) {
             userManager->createUser(req, rep);
+        }
+        if (request_path.find("/sound/upload") != std::string::npos) {
+            soundManager->createSound(req, rep);
         }
     }
 }
