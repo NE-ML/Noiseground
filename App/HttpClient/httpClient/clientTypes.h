@@ -3,6 +3,7 @@
 
 #include <boost/beast.hpp>
 #include <map>
+#include <vector>
 
 using namespace boost::beast;
 
@@ -11,9 +12,15 @@ typedef http::request<http::string_body> Request;
 
 typedef std::map<std::string, std::string> Params;
 
+struct Header {
+    std::string name;
+    std::string values;
+};
+
 struct ResponseStruct {
     unsigned int status;
     std::string body;
+    std::vector<Header> headers;
 };
 
 struct Host {

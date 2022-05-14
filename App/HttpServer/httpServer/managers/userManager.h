@@ -7,9 +7,9 @@
 //class UserManager {
 //public:
 //    UserManager();
-//    ResponseServer createUser(const RequestServer &request);
-//    ResponseServer loginUser(const RequestServer &request);
-//    ResponseServer changeUser(const RequestServer &request);
+//    ResponseServer createUser(const Request &request);
+//    ResponseServer loginUser(const Request &request);
+//    ResponseServer changeUser(const Request &request);
 //private:
 //    UserModel* userModel = new UserModel();
 //    Serializer* ser = new Serializer();

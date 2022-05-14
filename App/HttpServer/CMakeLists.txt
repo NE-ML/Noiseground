@@ -13,10 +13,12 @@ if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIR} httpServer httpServer/managers ../httpClient/httpClient)
 
 #    add_library(UserManager httpServer/managers/userManager.cpp httpServer/managers/serializer.cpp)
-#    add_library(SoundManager httpServer/managers/soundManager.cpp httpServer/managers/serializer.cpp)
+    add_library(SoundManager httpServer/managers/soundManager.cpp httpServer/managers/serializer.cpp)
 
     add_library(httpServer httpServer/httpServer.cpp httpServer/httpConnection.cpp httpServer/router.cpp
                             httpServer/parser.cpp httpServer/reply.cpp httpServer/mime_types.cpp)
+
+    target_link_libraries(httpServer SoundManager)
 
     add_executable(httpServer_run main.cpp)
     target_link_libraries(httpServer_run httpServer)

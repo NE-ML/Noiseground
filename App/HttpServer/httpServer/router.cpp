@@ -24,33 +24,15 @@ void Router::handle_request(const Request& req, Reply& rep) {
         return;
     }
 
-    if (request_path[request_path.size() - 1] == '/') {
-        request_path += "index.html";
+    if (req.method == "GET") {
+        if (request_path == "/sounds/standard") {
+            rep.status = Reply::ok;
+            rep.content = SoundManager().getStdSounds();
+            rep.headers.resize(1);
+            rep.headers[0].name = "Content-Length";
+            rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
+        }
     }
-
-    std::size_t last_slash_pos = request_path.find_last_of('/');
-    std::size_t last_dot_pos = request_path.find_last_of('.');
-    std::string extension;
-    if (last_dot_pos != std::string::npos && last_dot_pos > last_slash_pos) {
-        extension = request_path.substr(last_dot_pos + 1);
-    }
-
-    std::string full_path = doc_root_ + request_path;
-    std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
-    if (!is) {
-        rep = Reply::stock_reply(Reply::not_found);
-        return;
-    }
-
-    rep.status = Reply::ok;
-    char buf[512];
-    while (is.read(buf, sizeof(buf)).gcount() > 0)
-        rep.content.append(buf, is.gcount());
-    rep.headers.resize(2);
-    rep.headers[0].name = "Content-Length";
-    rep.headers[0].value = boost::lexical_cast<std::string>(rep.content.size());
-    rep.headers[1].name = "Content-Type";
-    rep.headers[1].value = extension_to_type(extension);
 }
 
 bool Router::url_decode(const std::string& in, std::string& out) {

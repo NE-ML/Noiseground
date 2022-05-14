@@ -28,7 +28,7 @@ protected:
     boost::asio::io_service::strand strand_;
     boost::asio::ip::tcp::socket socket_;
     Router& router_;
-    boost::array<char, 8192> buffer_{};
+    boost::array<char, 100000> buffer_{};
     Request request_;
     Parser parser_;
     Reply reply_;

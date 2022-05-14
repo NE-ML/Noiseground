@@ -4,7 +4,6 @@
 #include <string>
 #include <boost/noncopyable.hpp>
 
-#include "userManager.h"
 #include "soundManager.h"
 #include "reply.h"
 #include "request.h"
