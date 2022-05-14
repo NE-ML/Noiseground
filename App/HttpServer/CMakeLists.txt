@@ -10,8 +10,7 @@ set(Boost_USE_MULTITHREADED      ON)
 find_package(Boost COMPONENTS ALL REQUIRED)
 
 if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIR} httpServer httpServer/managers ../httpClient/httpClient
-                        httpServer/generalTypes httpServer/models)
+    include_directories(${Boost_INCLUDE_DIR} httpServer httpServer/managers httpServer/generalTypes httpServer/models)
 
     add_library(UserModel httpServer/models/userModel.cpp)
 

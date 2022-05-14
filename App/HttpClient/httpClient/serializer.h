@@ -4,13 +4,16 @@
 #include <vector>
 
 #include "sound.h"
+#include "clientTypes.h"
 
-class Deserializer {
+class Serializer {
 public:
-    std::vector<Sound> deserialSounds(std::string &val);
+    std::vector<Sound> deserialSounds(const std::string &val);
+    std::string serialData(const Params* body);
 private:
     std::string decode64(const std::string &val);
 };
+
 
 
 #endif //HTTPCLIENT_DESERIALIZER_H

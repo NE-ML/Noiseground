@@ -16,7 +16,6 @@ std::string HttpClient::createURL(const std::string& target, Params* params) {
         url += item.first + "=" + item.second + "&";
     }
     url.pop_back();
-    std::cout << url << std::endl;
     return url;
 }
 
@@ -69,6 +68,48 @@ ResponseStruct HttpClient::makeGetRequest(const Host &host, const std::string &t
             request.set(iter.first, iter.second);
         }
     }
+    boost::beast::http::write(socket, request);
+
+    Response result;
+    boost::beast::http::read(socket, flat_buffer, result);
+    boost::system::error_code ec;
+    socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
+    if (ec && ec != boost::system::errc::not_connected)
+        std::cout << "Connection error" << std::endl;
+    return parseResponse(result);
+}
+
+ResponseStruct HttpClient::makePostRequest(const Host &host, const std::string &target, Params* body,
+                                           Params *headers) {
+    HttpClient::ip = host.ip;
+
+    bool connected = connect(host.port);
+    if (!connected) {
+        return {};
+    }
+    const std::string& url = target;
+
+    std::string json = serializer.serialData(body);
+
+    const int version = 11;
+    Request request{boost::beast::http::verb::post, url, version};
+    request.set(boost::beast::http::field::host, HttpClient::ip);
+    request.set(boost::beast::http::field::user_agent, BOOST_BEAST_VERSION_STRING);
+    request.set(boost::beast::http::field::content_type, "application/json; charset=utf-8");
+    request.set(boost::beast::http::field::content_length, boost::lexical_cast<std::string>(json.size()));
+
+    if (headers && !headers->empty()) {
+        for (const auto& iter: *headers) {
+            request.set(iter.first, iter.second);
+        }
+    }
+
+    if (json[json.size() - 1] == '\n') {
+        json[json.size() - 1] = '\0';
+    }
+
+    request.set(boost::beast::http::field::body, json);
+
     boost::beast::http::write(socket, request);
 
     Response result;

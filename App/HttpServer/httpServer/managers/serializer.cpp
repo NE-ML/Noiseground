@@ -28,3 +28,14 @@ std::string Serializer::serialSounds(std::vector<Sound> &sounds) {
     boost::property_tree::write_json(out, json);
     return out.str();
 };
+
+User Serializer::deserialRegisterData(const std::string &val) {
+    std::stringstream ss;
+    ss << val;
+    boost::property_tree::ptree json;
+    boost::property_tree::read_json(ss, json);
+    User tmp;
+    tmp.login = json.get<std::string>("login");
+    tmp.password = json.get<std::string>("password");
+    return tmp;
+};

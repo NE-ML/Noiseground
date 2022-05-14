@@ -4,14 +4,27 @@ void UserManager::loginUser(const std::string &request_path, Reply& rep) {
     std::string passwd = get_header(request_path, "password");
     std::string login = get_header(request_path, "login");
     std::vector<User> res = userModel->FindUserWithLogin(login);
-    for (auto& i : res) {
-        if (i.password == passwd) {
-            rep.status = Reply::ok;
-            return;
-        }
+    if (!res.empty()) {
+        rep.status = Reply::ok;
+        return;
     }
     rep.status = Reply::forbidden;
 };
+
+void UserManager::createUser(const Request &req, Reply &rep) {
+    User new_user;
+    for (auto &i : req.headers) {
+        if (i.name == "Body")
+            new_user = serializer->deserialRegisterData(i.value);
+    }
+    std::vector<User> res = userModel->FindUserWithLogin(new_user.login);
+    if (res.empty()) {
+        userModel->addUser(new_user);
+        rep.status = Reply::ok;
+        return;
+    }
+    rep.status = Reply::forbidden;
+}
 
 std::string UserManager::get_header(const std::string& path, const std::string& name) {
     std::size_t pos = path.find(name, 0);

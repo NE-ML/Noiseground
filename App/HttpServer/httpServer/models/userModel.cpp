@@ -18,3 +18,10 @@ std::vector<User> UserModel::FindUserWithLogin(const std::string& login) {
     f.close();
     return res;
 }
+
+void UserModel::addUser(const User& new_user) {
+    std::ofstream f;
+    f.open("../data/" + dataName, std::ios_base::out | std::ios_base::app);
+    f << "\n" << new_user.login << " " << new_user.password;
+    f.close();
+}

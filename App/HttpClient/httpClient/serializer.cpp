@@ -1,4 +1,4 @@
-#include "deserializer.h"
+#include "serializer.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -6,7 +6,9 @@
 #include <boost/archive/iterators/transform_width.hpp>
 #include <boost/algorithm/string.hpp>
 
-std::string Deserializer::decode64(const std::string &val) {
+
+
+std::string Serializer::decode64(const std::string &val) {
     using namespace boost::archive::iterators;
     using It = transform_width<binary_from_base64<std::string::const_iterator>, 8, 6>;
     return boost::algorithm::trim_right_copy_if(std::string(It(std::begin(val)), It(std::end(val))), [](char c) {
@@ -15,7 +17,7 @@ std::string Deserializer::decode64(const std::string &val) {
 }
 
 
-std::vector<Sound> Deserializer::deserialSounds(std::string &val) {
+std::vector<Sound> Serializer::deserialSounds(const std::string &val) {
     std::stringstream ss;
     ss << val;
     boost::property_tree::ptree json;
@@ -29,4 +31,17 @@ std::vector<Sound> Deserializer::deserialSounds(std::string &val) {
         sounds.push_back(new_sound);
     }
     return sounds;
+};
+
+std::string Serializer::serialData(const Params *body) {
+    boost::property_tree::ptree json;
+    if (body && !body->empty()) {
+        auto iter = body->begin();
+        for (; iter != body->end(); iter++) {
+            json.put(iter->first, iter->second);
+        }
+    }
+    std::ostringstream buf;
+    write_json(buf, json, false);
+    return buf.str();
 };

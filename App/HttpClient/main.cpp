@@ -2,22 +2,22 @@
 #include <fstream>
 
 #include "httpClient.h"
-#include "deserializer.h"
+#include "serializer.h"
 
 int main() {
     const std::string domainExample;
     const std::string ipExample = "0.0.0.0";
     const unsigned short portExample = 80;
-    const std::string targetExample = "/user/auth?login=a&password=c";
-
     auto *client = new HttpClient();
-    auto *deserializer = new Deserializer();
+    auto *serializer = new Serializer();
 
-    ResponseStruct result = client->makeGetRequest(
-            Host(domainExample, ipExample, portExample), targetExample);
-
-//    if (result.status == 200) {
-//        std::vector<Sound> sounds = deserializer->deserialSounds(result.body);
+//    const std::string targetExample1 = "/sound/standard";
+//
+//    ResponseStruct result1 = client->makeGetRequest(
+//            Host(domainExample, ipExample, portExample), targetExample1);
+//
+//    if (result1.status == 200) {
+//        std::vector<Sound> sounds = serializer->deserialSounds(result1.body);
 //        for (auto &i : sounds) {
 //            std::ofstream fout(i.name);
 //            fout << i.content;
@@ -25,12 +25,34 @@ int main() {
 //        }
 //        std::cout << "Saved";
 //    } else {
-//        std::cout << "Fail with status " << result.status;
+//        std::cout << "Fail with status " << result1.status;
 //    }
+//
+//    std::cout << "\n------------\n";
+//
+//    const std::string targetExample2 = "/user/auth";
+//    auto* params2 = new Params;
+//    params2->insert({"login", "a"});
+//    params2->insert({"password", "b"});
+//
+//    ResponseStruct result2 = client->makeGetRequest(
+//            Host(domainExample, ipExample, portExample), targetExample2, params2);
+//
+//    std::cout << result2.status;
 
-//    std::cout << result.status;
+//    std::cout << "\n------------\n";
+//
+    const std::string targetExample3 = "/user/register";
+    auto* body3 = new Params;
+    body3->insert({"login", "f"});
+    body3->insert({"password", "g"});
 
-    delete deserializer;
+    ResponseStruct result3 = client->makePostRequest(
+            Host(domainExample, ipExample, portExample), targetExample3, body3);
+
+    std::cout << result3.status;
+
+    delete serializer;
     delete client;
     return 0;
 }

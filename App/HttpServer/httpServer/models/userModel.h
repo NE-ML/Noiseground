@@ -7,6 +7,7 @@
 class UserModel {
 public:
     std::vector<User> FindUserWithLogin(const std::string& login);
+    void addUser(const User& new_user);
 private:
     std::string dataName = "users.txt";
 };

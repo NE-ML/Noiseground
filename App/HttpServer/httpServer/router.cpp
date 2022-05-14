@@ -31,6 +31,10 @@ void Router::handle_request(const Request& req, Reply& rep) {
         if (request_path.find("/user/auth") != std::string::npos) {
             userManager->loginUser(request_path, rep);
         }
+    } else if (req.method == "POST") {
+        if (request_path.find("/user/register") != std::string::npos) {
+            userManager->createUser(req, rep);
+        }
     }
 }
 

@@ -5,6 +5,7 @@
 #include <utility>
 
 #include "clientTypes.h"
+#include "serializer.h"
 
 class HttpClient {
 public:
@@ -12,7 +13,7 @@ public:
     ResponseStruct makeGetRequest(const Host& host, const std::string& target,
                                   Params* params = nullptr, Params* headers = nullptr);
     ResponseStruct makePostRequest(const Host& host, const std::string& target, Params* body,
-                                  Params* params = nullptr, Params* headers = nullptr);
+                                   Params* headers = nullptr);
     ResponseStruct makeDeleteRequest(const Host& host, const std::string& target,
                                   Params* params = nullptr, Params* headers = nullptr);
 private:
@@ -25,6 +26,7 @@ private:
     boost::asio::ip::tcp::socket socket;
     std::string ip;
     boost::beast::flat_buffer flat_buffer;
+    Serializer serializer;
 };
 
 

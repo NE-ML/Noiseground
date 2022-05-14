@@ -4,10 +4,12 @@
 #include <vector>
 
 #include "sound.h"
+#include "user.h"
 
 class Serializer {
 public:
     std::string serialSounds(std::vector<Sound> &sounds);
+    User deserialRegisterData(const std::string& val);
 private:
     std::string encode64(const std::string &val);
 };
