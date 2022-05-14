@@ -1,10 +1,9 @@
-#include <QVBoxLayout>
-#include <QLabel>
-#include <iostream>
 #include "SoundBox.h"
 
-#include "Core.h"
+#include <QVBoxLayout>
+#include <QLabel>
 
+#include "Core.h"
 #include "PlayPauseButton.h"
 
 SoundBox::SoundBox(const std::pair<int, std::string> &data) : QGroupBox(), id(data.first), name(data.second) {
@@ -31,7 +30,7 @@ SoundBox::SoundBox(const std::pair<int, std::string> &data) : QGroupBox(), id(da
     playPauseButton->setObjectName(QString::fromStdString(data.second + "PlayPauseButton"));
 
     verticalLayout->addWidget(playPauseButton);
-    
+
     verticalLayout->addWidget(label);
 
     volumeSlider = new QSlider(this);
@@ -39,7 +38,7 @@ SoundBox::SoundBox(const std::pair<int, std::string> &data) : QGroupBox(), id(da
     volumeSlider->setOrientation(Qt::Horizontal);
 
     verticalLayout->addWidget(volumeSlider);
-    
+
     QObject::connect(volumeSlider, &QSlider::valueChanged, this, &SoundBox::volumeChanged);
     connect(playPauseButton, &PlayPauseButton::play, this, &SoundBox::play);
     connect(playPauseButton, &PlayPauseButton::pause, this, &SoundBox::pause);

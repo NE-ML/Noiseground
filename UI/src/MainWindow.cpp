@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <QCoreApplication>
 #include "AuthDialog.h"
-#include"SignUpDialog.h"
+#include "SignUpDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setupUi(this);

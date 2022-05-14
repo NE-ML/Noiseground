@@ -12,6 +12,6 @@ void Core::pause(int soundId) {
 
 }
 
-void Core::loadMusic(const std::string& path) {
+void Core::loadMusic(const std::string &path) {
 
 }

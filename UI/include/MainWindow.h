@@ -10,15 +10,17 @@
 #include "SignUpDialog.h"
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
     
     SignUpDialog *getSignUpDialog();
 
 private slots:
+
     void on_Exit_clicked();
 
     void on_Login_clicked();
@@ -38,11 +40,12 @@ private:
     QPushButton *Exit = nullptr;
     QMenuBar *menubar = nullptr;
     QStatusBar *statusbar = nullptr;
-    
+
     void setupUi(QMainWindow *MainWindow);
 
     void retranslateUi(QMainWindow *MainWindow);
 
     friend class UIManager;
 };
+
 #endif // MAINWINDOW_H

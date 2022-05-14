@@ -3,7 +3,7 @@
 PlayPauseButton::PlayPauseButton(int soundId, PPButtonState defaultState, QWidget *parent) : soundId(soundId),
                                                                                              QPushButton(parent),
                                                                                              state(defaultState) {
-    switch(defaultState) {
+    switch (defaultState) {
         case PPButtonState::Paused:
             setText("Play");
             break;
@@ -25,7 +25,7 @@ void PlayPauseButton::changeState() {
             // setIcon(pauseIcon);
             break;
             emit pause(soundId);
-            
+
         case PPButtonState::Paused:
             state = PPButtonState::Playing;
             setText("Pause");
