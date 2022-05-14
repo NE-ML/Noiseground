@@ -9,19 +9,29 @@ enum class PPButtonState {
 };
 
 
-
-class PlayPauseButton : QPushButton {
+class PlayPauseButton : public QPushButton {
 Q_OBJECT
 public:
-    explicit PlayPauseButton(PPButtonState defaultState = PPButtonState::Paused, QWidget *parent = nullptr);
+    explicit PlayPauseButton(int soundId, PPButtonState defaultState = PPButtonState::Paused,
+                             QWidget *parent = nullptr);
 
-     
+PPButtonState getState();
+
+void setState(PPButtonState state);
+
 signals:
+
+    void play(int soundId);
+
+    void pause(int soundId);
     
 private slots:
+
     void changeState();
+
 private:
-    PPButtonState state;
+    int soundId = 0;
+    PPButtonState state = PPButtonState::Paused;
 };
 
 

@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QSlider>
 #include <QScrollArea>
+#include "SoundBox.h"
 
 /*QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,7 +34,7 @@ private:
     
     std::vector<QString> soundNames;
     
-    QGroupBox *groupBox = nullptr;
+    std::vector<SoundBox *> soundBoxes;
     QWidget *widget = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
     QPushButton *playButton = nullptr;

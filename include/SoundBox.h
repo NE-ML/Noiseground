@@ -7,14 +7,24 @@
 #include <QPushButton>
 #include <QSlider>
 
-class SoundBox {
+#include "PlayPauseButton.h"
+
+class SoundBox : public QGroupBox {
+Q_OBJECT
 public:
-    SoundBox(const std::string &name);
+    explicit SoundBox(const std::pair<int, std::string> &data);
     
+public slots:
+    void pause(int soundId);
+    
+    void volumeChanged(int value);
+
+    void play(int soundId);
+
 private:
+    int id;
     std::string name;
-    QGroupBox *self;
-    QPushButton *playPauseButton;
+    PlayPauseButton *playPauseButton;
     QSlider *volumeSlider;
 };
 

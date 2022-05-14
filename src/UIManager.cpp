@@ -17,7 +17,3 @@ UIManager::UIManager() {
     QObject::connect(mainWindow.getSignUpDialog(), &SignUpDialog::showUserWindow, &userWindow, &UserWindow::show);
     QObject::connect(&userWindow, &UserWindow::logout, &mainWindow, &MainWindow::show);
 }
-
-void UIManager::playSound() {
-    // Sound::play("Name");
-}

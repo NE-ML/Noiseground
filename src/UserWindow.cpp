@@ -31,45 +31,14 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
 
     for (int i = 0; i < 20; ++i) {
-        groupBox = new QGroupBox(scrollAreaWidgetContents);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setEnabled(true);
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
-        groupBox->setSizePolicy(sizePolicy);
-        groupBox->setMinimumSize(QSize(150, 150));
-        groupBox->setBaseSize(QSize(0, 0));
+        soundBoxes.push_back(new SoundBox(std::make_pair(i + 1, "Test" + std::to_string(i))));
         
-        verticalLayout = new QVBoxLayout(groupBox);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(10, 10, 10, 10);
-
-        auto label = new QLabel(groupBox);
-        label->setObjectName("soundNameLabel");
-        label->setText(soundNames[i]);
-        
-        verticalLayout->addWidget(label);
-        
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setText("Play");
-
-        verticalLayout->addWidget(pushButton);
-
-        volumeSlider = new QSlider(widget);
-        volumeSlider->setObjectName(QString::fromUtf8("volumeSlider"));
-        volumeSlider->setOrientation(Qt::Horizontal);
-
-        verticalLayout->addWidget(volumeSlider);
-        
-        gridLayout->addWidget(groupBox, i / 4, i % 4, 1, 1);
+        gridLayout->addWidget(soundBoxes[i], i / 4, i % 4, 1, 1);
     }
-        scrollArea->setWidget(scrollAreaWidgetContents);
+    scrollArea->setWidget(scrollAreaWidgetContents);
 
-        gridLayout_2->addWidget(scrollArea, 0, 0, 1, 1);
-
+    gridLayout_2->addWidget(scrollArea, 0, 0, 1, 1);
+        
     this->setCentralWidget(centralwidget);
     //QMetaObject::connectSlotsByName(this);
 }

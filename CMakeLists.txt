@@ -32,7 +32,7 @@ set(UI_HEADERS
         include/SoundBox.h
         include/PlayPauseButton.h)
 
-add_executable(${PROJECT_NAME} src/main.cpp ${UI_SOURCES} ${UI_HEADERS})
+add_executable(${PROJECT_NAME} src/main.cpp ${UI_SOURCES} ${UI_HEADERS} src/Core.cpp)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 
