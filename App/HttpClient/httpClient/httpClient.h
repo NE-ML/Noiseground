@@ -16,10 +16,14 @@ public:
                                    Params* headers = nullptr);
     ResponseStruct makeDeleteRequest(const Host& host, const std::string& target, Params* body,
                                      Params* headers = nullptr);
+    ResponseStruct makePutRequest(const Host& host, const std::string& target, Params* body,
+                                     Params* headers = nullptr);
 private:
     static ResponseStruct parseResponse(Response response);
     static std::string createURL(const std::string& target, Params* params = nullptr);
     bool connect(unsigned short port);
+    ResponseStruct makeRequest(const Host& host, const std::string& target, boost::beast::http::verb method,
+                               Params* params = nullptr, Params* body = nullptr, Params* headers = nullptr);
 
     boost::asio::io_context context;
     boost::asio::ip::tcp::resolver resolver;
