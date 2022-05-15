@@ -43,6 +43,10 @@ void Router::handle_request(const Request& req, Reply& rep) {
         if (request_path.find("/sound") != std::string::npos) {
             soundManager->deleteSound(req, rep);
         }
+    } else if (req.method == "PUT") {
+        if (request_path.find("/sound") != std::string::npos) {
+            soundManager->changeSound(req, rep);
+        }
     }
 }
 

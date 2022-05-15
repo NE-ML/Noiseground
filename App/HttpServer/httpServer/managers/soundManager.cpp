@@ -54,6 +54,20 @@ void SoundManager::deleteSound(const Request &req, Reply& rep) {
     rep.status = Reply::forbidden;
 }
 
+void SoundManager::changeSound(const Request &req, Reply &rep) {
+    std::pair<std::string, Sound> changed_sound;
+    for (auto &i : req.headers) {
+        if (i.name == "Body")
+            changed_sound = serializer->deserialChangedSoundData(i.value);
+    }
+    bool res = soundModel->changeSound(changed_sound);
+    if (res) {
+        rep.status = Reply::ok;
+        return;
+    }
+    rep.status = Reply::forbidden;
+}
+
 std::string SoundManager::get_param(const std::string& path, const std::string& name) {
     std::size_t pos = path.find(name, 0);
     std::size_t pos_equal = path.find('=', pos);

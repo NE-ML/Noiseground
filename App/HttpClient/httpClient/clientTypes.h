@@ -5,10 +5,8 @@
 #include <map>
 #include <vector>
 
-using namespace boost::beast;
-
-typedef http::response<http::dynamic_body> Response;
-typedef http::request<http::string_body> Request;
+typedef boost::beast::http::response<boost::beast::http::dynamic_body> Response;
+typedef boost::beast::http::request<boost::beast::http::string_body> Request;
 
 typedef std::map<std::string, std::string> Params;
 

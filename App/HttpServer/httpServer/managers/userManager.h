@@ -12,7 +12,6 @@ public:
     UserManager() = default;
     void createUser(const Request &req, Reply& rep);
     void loginUser(const std::string &request_path, Reply& rep);
-//    ResponseServer changeUser(const Request &request);
     ~UserManager() {
         delete serializer;
         delete userModel;

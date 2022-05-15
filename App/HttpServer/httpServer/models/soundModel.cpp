@@ -51,6 +51,15 @@ bool SoundModel::createNewSound(const std::pair<std::string, Sound> &new_sound) 
     return true;
 };
 
+bool SoundModel::changeSound(const std::pair<std::string, Sound> &sound) {
+    if (!boost::filesystem::exists("../data/sounds_" + sound.first + "/" + sound.second.name))
+        return false;
+    std::ofstream fout("../data/sounds_" + sound.first + "/" + sound.second.name);
+    fout << sound.second.content;
+    fout.close();
+    return true;
+};
+
 bool SoundModel::deleteSound(const std::pair<std::string, std::string> &sound) {
     if (!boost::filesystem::exists("../data/sounds_" + sound.first + "/" + sound.second))
         return false;

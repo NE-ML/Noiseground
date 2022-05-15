@@ -95,3 +95,20 @@ unsigned int HttpClientManager::deleteSound(const std::string &login, const std:
     delete body;
     return result.status;
 }
+
+unsigned int HttpClientManager::changeSound(const std::string &login, const std::string &sound_name,
+                                            const std::string &path_to_new_sound) {
+    std::string target = "/sound";
+    std::ifstream f(path_to_new_sound);
+    std::stringstream ss;
+    ss << f.rdbuf();
+    f.close();
+    std::string f_content = ss.str();
+    auto* body = new Params;
+    body->insert({"username", login});
+    body->insert({"name", sound_name});
+    body->insert({"new_data", serializer.encode64(f_content)});
+    ResponseStruct result = client.makePutRequest(host, target, body);
+    delete body;
+    return result.status;
+}

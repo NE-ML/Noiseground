@@ -55,8 +55,15 @@ int main() {
 
     std::cout << "\n------------\n";
 
-    std::cout << "DELETE /sound/ forest1.mp3" << "\n";
+    std::cout << "DELETE /sound forest1.mp3" << "\n";
     res = clientManager.deleteSound("a", "forest1.mp3");
+    std::cout << res;
+
+    std::cout << "\n------------\n";
+
+    std::cout << "PUT /sound forest2.mp3 rain.mp3" << "\n";
+    res = clientManager.changeSound("a", "forest2.mp3",
+                                    "../sounds_to_upload/rain.mp3");
     std::cout << res;
 
     return 0;

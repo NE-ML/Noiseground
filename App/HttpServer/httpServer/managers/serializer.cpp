@@ -72,3 +72,15 @@ std::pair<std::string, std::string> Serializer::deserialDeletedSoundData(const s
     tmp.second = json.get<std::string>("name");
     return tmp;
 }
+
+std::pair<std::string, Sound> Serializer::deserialChangedSoundData(const std::string &val) {
+    std::stringstream ss;
+    ss << val;
+    boost::property_tree::ptree json;
+    boost::property_tree::read_json(ss, json);
+    std::pair<std::string, Sound> tmp;
+    tmp.first = json.get<std::string>("username");
+    tmp.second.name = json.get<std::string>("name");
+    tmp.second.content = decode64(json.get<std::string>("new_data"));
+    return tmp;
+}

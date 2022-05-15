@@ -13,6 +13,8 @@ public:
     unsigned int uploadSound(const std::string &login, const std::string &path_to_sound);
     unsigned int getUserSounds(const std::string &login);
     unsigned int deleteSound(const std::string &login, const std::string &sound_name);
+    unsigned int changeSound(const std::string &login, const std::string &sound_name,
+                             const std::string &path_to_new_sound);
 private:
     std::string saved_path;
     Host host;

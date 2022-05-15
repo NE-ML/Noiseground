@@ -10,6 +10,7 @@ class SoundModel {
 public:
     std::vector<Sound> getStdSounds();
     bool createNewSound(const std::pair<std::string, Sound> &new_sound);
+    bool changeSound(const std::pair<std::string, Sound> &sound);
     bool deleteSound(const std::pair<std::string, std::string> &sound);
     std::vector<Sound> getUserSounds(const std::string& login);
 private:
