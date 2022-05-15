@@ -37,7 +37,7 @@ std::string Serializer::serialSounds(std::vector<Sound> &sounds) {
     std::stringstream out;
     boost::property_tree::write_json(out, json);
     return out.str();
-};
+}
 
 User Serializer::deserialRegisterData(const std::string &val) {
     std::stringstream ss;
@@ -48,7 +48,7 @@ User Serializer::deserialRegisterData(const std::string &val) {
     tmp.login = json.get<std::string>("login");
     tmp.password = json.get<std::string>("password");
     return tmp;
-};
+}
 
 std::pair<std::string, Sound> Serializer::deserialNewSoundData(const std::string &val) {
     std::stringstream ss;
@@ -60,4 +60,15 @@ std::pair<std::string, Sound> Serializer::deserialNewSoundData(const std::string
     tmp.second.name = json.get<std::string>("name");
     tmp.second.content = decode64(json.get<std::string>("data"));
     return tmp;
-};
+}
+
+std::pair<std::string, std::string> Serializer::deserialDeletedSoundData(const std::string &val) {
+    std::stringstream ss;
+    ss << val;
+    boost::property_tree::ptree json;
+    boost::property_tree::read_json(ss, json);
+    std::pair<std::string, std::string> tmp;
+    tmp.first = json.get<std::string>("username");
+    tmp.second = json.get<std::string>("name");
+    return tmp;
+}

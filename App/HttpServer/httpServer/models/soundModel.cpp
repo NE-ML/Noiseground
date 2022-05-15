@@ -14,12 +14,15 @@ std::string SoundModel::readFile(const std::string& fileName) {
 }
 
 std::vector<Sound> SoundModel::getStdSounds() {
-    std::vector<Sound> res(standardNames.size());
-    int k = 0;
-    for (auto &i : standardNames) {
-        res[k].name = i;
-        res[k].content = readFile("../data/sounds_standard" + i);
-        k++;
+    std::string path = "../data/sounds_standard";
+    std::vector<Sound> res;
+    for (const auto & entry : boost::filesystem::directory_iterator(path)) {
+        Sound tmp;
+        std::string path_string = entry.path().string();
+        std::size_t slash_pos = path_string.rfind("/");
+        tmp.name = path_string.substr(slash_pos + 1, path_string.size() - slash_pos - 1);
+        tmp.content = readFile(path_string);
+        res.push_back(tmp);
     }
     return res;
 };
@@ -45,6 +48,13 @@ bool SoundModel::createNewSound(const std::pair<std::string, Sound> &new_sound) 
     std::ofstream fout("../data/sounds_" + new_sound.first + "/" + new_sound.second.name);
     fout << new_sound.second.content;
     fout.close();
+    return true;
+};
+
+bool SoundModel::deleteSound(const std::pair<std::string, std::string> &sound) {
+    if (!boost::filesystem::exists("../data/sounds_" + sound.first + "/" + sound.second))
+        return false;
+    boost::filesystem::remove("../data/sounds_" + sound.first + "/" + sound.second);
     return true;
 };
 

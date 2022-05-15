@@ -16,7 +16,7 @@ int main() {
     ResponseStruct result1 = client->makeGetRequest(
             Host(domainExample, ipExample, portExample), targetExample1);
 
-    std::cout << targetExample1 << "\n";
+    std::cout << "GET " << targetExample1 << "\n";
 
     if (result1.status == 200) {
         std::vector<Sound> sounds = serializer->deserialSounds(result1.body);
@@ -34,7 +34,7 @@ int main() {
 
     const std::string targetExample2 = "/user/auth";
 
-    std::cout << targetExample2 << "?login=a&password=b" << "\n";
+    std::cout << "GET " << targetExample2 << "?login=a&password=b" << "\n";
 
     auto* params2 = new Params;
     std::string login = "a";
@@ -50,7 +50,7 @@ int main() {
 
     const std::string targetExample3 = "/user/register";
 
-    std::cout << targetExample3 << "\n";
+    std::cout << "POST " << targetExample3 << "\n";
 
     auto* body3 = new Params;
     body3->insert({"login", "f"});
@@ -61,6 +61,8 @@ int main() {
 
     std::cout << result3.status;
 
+    std::cout << "\nAgain";
+
     result3 = client->makePostRequest(
             Host(domainExample, ipExample, portExample), targetExample3, body3);
 
@@ -68,16 +70,16 @@ int main() {
 
     std::cout << "\n------------\n";
 
-    const std::string targetExample4 = "/sound/upload";
-    const std::string sound_name = "forest1.mp3";
-    const std::string sound_path = "../sounds_to_upload/" + sound_name;
+    std::string targetExample4 = "/sound/upload";
+    std::string sound_name = "forest1.mp3";
+    std::string sound_path = "../sounds_to_upload/" + sound_name;
     std::ifstream f(sound_path);
     std::stringstream ss;
     ss << f.rdbuf();
     f.close();
     std::string f_content = ss.str();
 
-    std::cout << targetExample4 << "\n";
+    std::cout << "POST " << targetExample4 << " " << sound_name << "\n";
 
     auto* body4 = new Params;
     body4->insert({"username", login});
@@ -89,6 +91,27 @@ int main() {
 
     std::cout << result4.status;
 
+    targetExample4 = "/sound/upload";
+    sound_name = "forest2.mp3";
+    sound_path = "../sounds_to_upload/" + sound_name;
+    std::stringstream ss6;
+    f.open(sound_path);
+    ss6 << f.rdbuf();
+    f.close();
+    f_content = ss6.str();
+
+    std::cout << "\n" << "POST " << targetExample4 << " " << sound_name << "\n";
+
+    auto* body6 = new Params;
+    body6->insert({"username", login});
+    body6->insert({"name", sound_name});
+    body6->insert({"data", serializer->encode64(f_content)});
+
+    ResponseStruct result6 = client->makePostRequest(
+            Host(domainExample, ipExample, portExample), targetExample4, body6);
+
+    std::cout << result6.status;
+
     std::cout << "\n------------\n";
 
     const std::string targetExample5 = "/sound/get";
@@ -96,7 +119,7 @@ int main() {
     auto* params5 = new Params;
     params5->insert({"username", login});
 
-    std::cout << targetExample5 << "?username=a" << "\n";
+    std::cout << "GET " << targetExample5 << "?username=a" << "\n";
 
     ResponseStruct result5 = client->makeGetRequest(
             Host(domainExample, ipExample, portExample), targetExample5, params5);
@@ -113,8 +136,26 @@ int main() {
         std::cout << "Fail with status " << result5.status;
     }
 
+    std::cout << "\n------------\n";
+
+    const std::string targetExample7 = "/sound/";
+
+    sound_name = "forest1.mp3";
+
+    std::cout << "DELETE " << targetExample7 << " " << sound_name << "\n";
+
+    auto* body7 = new Params;
+    body7->insert({"username", login});
+    body7->insert({"name", sound_name});
+
+    ResponseStruct result7 = client->makeDeleteRequest(
+            Host(domainExample, ipExample, portExample), targetExample7, body7);
+
+    std::cout << result7.status;
+
     delete body3;
     delete body4;
+    delete params5;
     delete serializer;
     delete client;
     return 0;

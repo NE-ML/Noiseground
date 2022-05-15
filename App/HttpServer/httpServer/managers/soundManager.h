@@ -13,7 +13,7 @@ public:
     void getUserSounds(const std::string &request_path, Reply& rep);
     void getStdSounds(Reply& rep);
 //    ResponseServer changeSound(const Request &request);
-//    ResponseServer deleteSound(const Request &request);
+    void deleteSound(const Request &req, Reply& rep);
     ~SoundManager() {
         delete serializer;
         delete soundModel;

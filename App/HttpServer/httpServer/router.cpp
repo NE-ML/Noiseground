@@ -39,6 +39,10 @@ void Router::handle_request(const Request& req, Reply& rep) {
         if (request_path.find("/sound/upload") != std::string::npos) {
             soundManager->createSound(req, rep);
         }
+    } else if (req.method == "DELETE") {
+        if (request_path.find("/sound") != std::string::npos) {
+            soundManager->deleteSound(req, rep);
+        }
     }
 }
 
