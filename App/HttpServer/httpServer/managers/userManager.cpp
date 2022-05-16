@@ -16,11 +16,9 @@ void UserManager::loginUser(const std::string &request_path, Reply& rep) {
 };
 
 void UserManager::createUser(const Request &req, Reply &rep) {
-    User new_user;
-    for (auto &i : req.headers) {
-        if (i.name == "Body")
-            new_user = serializer->deserialRegisterData(i.value);
-    }
+    auto body = std::find_if(req.headers.begin(), req.headers.end(),
+                             [](const Header& i) {return i.name == "Body";});
+    User new_user = serializer->deserialRegisterData(body->value);
     std::vector<User> res = userModel->FindUserWithLogin(new_user.login);
     if (res.empty()) {
         userModel->addUser(new_user);

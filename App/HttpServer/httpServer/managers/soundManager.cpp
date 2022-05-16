@@ -17,11 +17,9 @@ void SoundManager::getStdSounds(Reply& rep) {
 }
 
 void SoundManager::createSound(const Request &req, Reply &rep) {
-    std::pair<std::string, Sound> new_sound;
-    for (auto &i : req.headers) {
-        if (i.name == "Body")
-            new_sound = serializer->deserialNewSoundData(i.value);
-    }
+    auto body = std::find_if(req.headers.begin(), req.headers.end(),
+                             [](const Header& i) {return i.name == "Body";});
+    std::pair<std::string, Sound> new_sound = serializer->deserialNewSoundData(body->value);
     bool res = soundModel->createNewSound(new_sound);
     if (res) {
         rep.status = Reply::ok;
@@ -45,11 +43,9 @@ void SoundManager::getUserSounds(const std::string &request_path, Reply &rep) {
 }
 
 void SoundManager::deleteSound(const Request &req, Reply& rep) {
-    std::pair<std::string, std::string> deleted_sound;
-    for (auto &i : req.headers) {
-        if (i.name == "Body")
-            deleted_sound = serializer->deserialDeletedSoundData(i.value);
-    }
+    auto body = std::find_if(req.headers.begin(), req.headers.end(),
+                             [](const Header& i) {return i.name == "Body";});
+    std::pair<std::string, std::string> deleted_sound = serializer->deserialDeletedSoundData(body->value);
     bool res = soundModel->deleteSound(deleted_sound);
     if (res) {
         rep.status = Reply::ok;
@@ -59,11 +55,9 @@ void SoundManager::deleteSound(const Request &req, Reply& rep) {
 }
 
 void SoundManager::changeSound(const Request &req, Reply &rep) {
-    std::pair<std::string, Sound> changed_sound;
-    for (auto &i : req.headers) {
-        if (i.name == "Body")
-            changed_sound = serializer->deserialChangedSoundData(i.value);
-    }
+    auto body = std::find_if(req.headers.begin(), req.headers.end(),
+                             [](const Header& i) {return i.name == "Body";});
+    std::pair<std::string, Sound> changed_sound = serializer->deserialChangedSoundData(body->value);
     bool res = soundModel->changeSound(changed_sound);
     if (res) {
         rep.status = Reply::ok;
