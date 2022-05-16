@@ -8,7 +8,9 @@
 #include "reply.h"
 
 Router::Router(std::string doc_root)
-        : doc_root_(std::move(doc_root)) {}
+        : doc_root_(std::move(doc_root)),
+        soundManager(std::make_shared<SoundManager>()),
+        userManager(std::make_shared<UserManager>()) {}
 
 void Router::handle_request(const Request& req, Reply& rep) {
     std::string request_path;

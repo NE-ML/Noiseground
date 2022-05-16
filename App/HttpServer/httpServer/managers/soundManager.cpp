@@ -3,6 +3,10 @@
 #include <boost/lexical_cast.hpp>
 #include <sound.h>
 
+SoundManager::SoundManager()
+        : soundModel(std::make_shared<SoundModel>()),
+        serializer(std::make_shared<Serializer>()) {}
+
 void SoundManager::getStdSounds(Reply& rep) {
     auto res = soundModel->getStdSounds();
     rep.status = Reply::ok;

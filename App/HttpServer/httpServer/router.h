@@ -15,8 +15,8 @@ public:
     void handle_request(const Request& req, Reply& rep);
 private:
     std::string doc_root_;
-    SoundManager* soundManager = new SoundManager();
-    UserManager* userManager = new UserManager();
+    std::shared_ptr<SoundManager> soundManager;
+    std::shared_ptr<UserManager> userManager;
     static bool url_decode(const std::string& in, std::string& out);
 };
 

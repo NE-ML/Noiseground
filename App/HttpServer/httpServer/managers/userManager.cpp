@@ -1,5 +1,9 @@
 #include "userManager.h"
 
+UserManager::UserManager()
+        : userModel(std::make_shared<UserModel>()),
+        serializer(std::make_shared<Serializer>()) {}
+
 void UserManager::loginUser(const std::string &request_path, Reply& rep) {
     std::string passwd = get_param(request_path, "password");
     std::string login = get_param(request_path, "login");
