@@ -28,7 +28,6 @@ std::vector<Sound> Serializer::deserialSounds(const std::string &val) {
     ss << val;
     boost::property_tree::ptree json;
     boost::property_tree::read_json(ss, json);
-    int count = json.get<int>("count");
     std::vector<Sound> sounds;
     for (auto &sound : json.get_child("sounds")) {
         Sound new_sound;
@@ -37,17 +36,16 @@ std::vector<Sound> Serializer::deserialSounds(const std::string &val) {
         sounds.push_back(new_sound);
     }
     return sounds;
-};
+}
 
-std::string Serializer::serialData(const Params *body) {
+std::string Serializer::serialData(const std::shared_ptr<Params>& body) {
     boost::property_tree::ptree json;
-    if (body && !body->empty()) {
-        auto iter = body->begin();
-        for (; iter != body->end(); iter++) {
-            json.put(iter->first, iter->second);
+    if (body) {
+        for (auto& iter: *body) {
+            json.put(iter.first, iter.second);
         }
     }
     std::ostringstream buf;
     write_json(buf, json, false);
     return buf.str();
-};
+}

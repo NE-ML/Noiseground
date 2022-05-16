@@ -11,19 +11,22 @@ class HttpClient {
 public:
     HttpClient();
     ResponseStruct makeGetRequest(const Host& host, const std::string& target,
-                                  Params* params = nullptr, Params* headers = nullptr);
-    ResponseStruct makePostRequest(const Host& host, const std::string& target, Params* body,
-                                   Params* headers = nullptr);
-    ResponseStruct makeDeleteRequest(const Host& host, const std::string& target, Params* body,
-                                     Params* headers = nullptr);
-    ResponseStruct makePutRequest(const Host& host, const std::string& target, Params* body,
-                                     Params* headers = nullptr);
+                                  const std::shared_ptr<Params>& params = nullptr,
+                                  const std::shared_ptr<Params>& headers = nullptr);
+    ResponseStruct makePostRequest(const Host& host, const std::string& target, const std::shared_ptr<Params>& body,
+                                   const std::shared_ptr<Params>& headers = nullptr);
+    ResponseStruct makeDeleteRequest(const Host& host, const std::string& target, const std::shared_ptr<Params>& body,
+                                     const std::shared_ptr<Params>& headers = nullptr);
+    ResponseStruct makePutRequest(const Host& host, const std::string& target, const std::shared_ptr<Params>& body,
+                                  const std::shared_ptr<Params>& headers = nullptr);
 private:
     static ResponseStruct parseResponse(Response response);
-    static std::string createURL(const std::string& target, Params* params = nullptr);
+    static std::string createURL(const std::string& target, const std::shared_ptr<Params>& params = nullptr);
     bool connect(unsigned short port);
     ResponseStruct makeRequest(const Host& host, const std::string& target, boost::beast::http::verb method,
-                               Params* params = nullptr, Params* body = nullptr, Params* headers = nullptr);
+                               const std::shared_ptr<Params>& params = nullptr,
+                               const std::shared_ptr<Params>& body = nullptr,
+                               const std::shared_ptr<Params>& headers = nullptr);
 
     boost::asio::io_context context;
     boost::asio::ip::tcp::resolver resolver;

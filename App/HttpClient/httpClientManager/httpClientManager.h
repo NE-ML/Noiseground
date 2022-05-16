@@ -20,8 +20,7 @@ private:
     Host host;
     HttpClient client;
     Serializer serializer;
-
-//    void saveSounds(const std::vector<Sound> &sounds);
+    void saveSounds(const std::vector<Sound> &sounds);
 };
 
 

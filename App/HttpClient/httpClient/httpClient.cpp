@@ -9,8 +9,9 @@
 
 using Error = boost::system::system_error;
 
-std::string HttpClient::createURL(const std::string& target, Params* params) {
-    if (!params) return target;
+std::string HttpClient::createURL(const std::string& target, const std::shared_ptr<Params>& params) {
+    if (!params)
+        return target;
     std::string url = target + "?";
     for (const auto& item: *params) {
         url += item.first + "=" + item.second + "&";
@@ -34,7 +35,8 @@ bool HttpClient::connect(unsigned short port = 80) {
 HttpClient::HttpClient() : socket(context), resolver(context) {}
 
 ResponseStruct HttpClient::makeRequest(const Host &host, const std::string &target, boost::beast::http::verb method,
-                                       Params *params, Params *body, Params *headers) {
+                                       const std::shared_ptr<Params>& params, const std::shared_ptr<Params>& body,
+                                       const std::shared_ptr<Params>& headers) {
     HttpClient::ip = host.ip;
 
     bool connected = connect(host.port);
@@ -42,7 +44,7 @@ ResponseStruct HttpClient::makeRequest(const Host &host, const std::string &targ
         return {};
     }
     std::string url = target;
-    if (params && !params->empty()) {
+    if (params) {
         url = createURL(target, params);
     }
 
@@ -51,16 +53,17 @@ ResponseStruct HttpClient::makeRequest(const Host &host, const std::string &targ
     request.set(boost::beast::http::field::host, HttpClient::ip);
     request.set(boost::beast::http::field::user_agent, BOOST_BEAST_VERSION_STRING);
 
-    if (headers && !headers->empty()) {
+    if (headers) {
         for (const auto& iter: *headers) {
             request.set(iter.first, iter.second);
         }
     }
 
-    if (body && !body->empty()) {
+    if (body) {
         std::string json = serializer.serialData(body);
         request.set(boost::beast::http::field::content_type, "application/json; charset=utf-8");
-        request.set(boost::beast::http::field::content_length, boost::lexical_cast<std::string>(json.size()));
+        request.set(boost::beast::http::field::content_length,
+                    boost::lexical_cast<std::string>(json.size()));
         if (json[json.size() - 1] == '\n') {
             json.pop_back();
         }
@@ -91,21 +94,25 @@ ResponseStruct HttpClient::parseResponse(Response response) {
 }
 
 ResponseStruct HttpClient::makeGetRequest(const Host &host, const std::string &target,
-                                          Params *params, Params *headers) {
+                                          const std::shared_ptr<Params>& params,
+                                          const std::shared_ptr<Params>& headers) {
     return makeRequest(host, target, boost::beast::http::verb::get, params, nullptr, headers);
 }
 
-ResponseStruct HttpClient::makePostRequest(const Host &host, const std::string &target, Params* body,
-                                           Params *headers) {
+ResponseStruct HttpClient::makePostRequest(const Host &host, const std::string &target,
+                                           const std::shared_ptr<Params>& body,
+                                           const std::shared_ptr<Params>& headers) {
     return makeRequest(host, target, boost::beast::http::verb::post, nullptr, body, headers);
 }
 
-ResponseStruct HttpClient::makeDeleteRequest(const Host &host, const std::string &target, Params* body,
-                                           Params *headers) {
+ResponseStruct HttpClient::makeDeleteRequest(const Host &host, const std::string &target,
+                                             const std::shared_ptr<Params>& body,
+                                             const std::shared_ptr<Params>& headers) {
     return makeRequest(host, target, boost::beast::http::verb::delete_, nullptr, body, headers);
 }
 
-ResponseStruct HttpClient::makePutRequest(const Host &host, const std::string &target, Params* body,
-                                             Params *headers) {
+ResponseStruct HttpClient::makePutRequest(const Host &host, const std::string &target,
+                                          const std::shared_ptr<Params>& body,
+                                          const std::shared_ptr<Params>& headers) {
     return makeRequest(host, target, boost::beast::http::verb::put, nullptr, body, headers);
 }

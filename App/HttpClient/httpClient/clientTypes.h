@@ -3,12 +3,13 @@
 
 #include <boost/beast.hpp>
 #include <map>
+#include <utility>
 #include <vector>
 
-typedef boost::beast::http::response<boost::beast::http::dynamic_body> Response;
-typedef boost::beast::http::request<boost::beast::http::string_body> Request;
+using Response = boost::beast::http::response<boost::beast::http::dynamic_body>;
+using Request = boost::beast::http::request<boost::beast::http::string_body>;
 
-typedef std::map<std::string, std::string> Params;
+using Params = std::map<std::string, std::string>;
 
 struct Header {
     std::string name;
@@ -26,7 +27,7 @@ struct Host {
     std::string ip;
     unsigned short port;
     Host(std::string domain, std::string ip, unsigned short port)
-            : domain(std::move(domain)), ip(ip), port(port) {}
+            : domain(std::move(domain)), ip(std::move(ip)), port(port) {}
 };
 
 #endif //HTTPCLIENT_CLIENTTYPES_H
