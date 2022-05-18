@@ -1,16 +1,18 @@
-#ifndef NOISEGROUND_USERMODEL_H
-#define NOISEGROUND_USERMODEL_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_MODELS_USERMODEL_H_
+#define APP_HTTPSERVER_HTTPSERVER_MODELS_USERMODEL_H_
+
+#include <vector>
+#include <string>
 
 #include "user.h"
-#include <vector>
 
 class UserModel {
-public:
+ public:
     std::vector<User> FindUserWithLogin(const std::string& login);
     void addUser(const User& new_user);
-private:
+ private:
     std::string dataName = "users.txt";
 };
 
 
-#endif //NOISEGROUND_USERMODEL_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_MODELS_USERMODEL_H_

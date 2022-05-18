@@ -1,5 +1,5 @@
-#ifndef HTTPSERVER_REPLY_H
-#define HTTPSERVER_REPLY_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_REPLY_H_
+#define APP_HTTPSERVER_HTTPSERVER_REPLY_H_
 
 #include <string>
 #include <vector>
@@ -7,10 +7,8 @@
 
 #include "header.h"
 
-struct Reply
-{
-    enum status_type
-    {
+struct Reply {
+    enum status_type {
         ok = 200,
         created = 201,
         accepted = 202,
@@ -37,4 +35,4 @@ struct Reply
 };
 
 
-#endif //HTTPSERVER_REPLY_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_REPLY_H_

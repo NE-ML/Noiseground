@@ -25,7 +25,7 @@ std::vector<Sound> SoundModel::getStdSounds() {
         res.push_back(tmp);
     }
     return res;
-};
+}
 
 std::vector<Sound> SoundModel::getUserSounds(const std::string& login) {
     std::string path = "../data/sounds_" + login;
@@ -39,7 +39,7 @@ std::vector<Sound> SoundModel::getUserSounds(const std::string& login) {
         res.push_back(tmp);
     }
     return res;
-};
+}
 
 bool SoundModel::createNewSound(const std::pair<std::string, Sound> &new_sound) {
     boost::filesystem::create_directory("../data/sounds_" + new_sound.first);
@@ -49,7 +49,7 @@ bool SoundModel::createNewSound(const std::pair<std::string, Sound> &new_sound) 
     fout << new_sound.second.content;
     fout.close();
     return true;
-};
+}
 
 bool SoundModel::changeSound(const std::pair<std::string, Sound> &sound) {
     if (!boost::filesystem::exists("../data/sounds_" + sound.first + "/" + sound.second.name))
@@ -58,12 +58,12 @@ bool SoundModel::changeSound(const std::pair<std::string, Sound> &sound) {
     fout << sound.second.content;
     fout.close();
     return true;
-};
+}
 
 bool SoundModel::deleteSound(const std::pair<std::string, std::string> &sound) {
     if (!boost::filesystem::exists("../data/sounds_" + sound.first + "/" + sound.second))
         return false;
     boost::filesystem::remove("../data/sounds_" + sound.first + "/" + sound.second);
     return true;
-};
+}
 

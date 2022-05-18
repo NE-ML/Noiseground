@@ -1,5 +1,5 @@
-#ifndef HTTPSERVER_SOUND_H
-#define HTTPSERVER_SOUND_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_GENERALTYPES_SOUND_H_
+#define APP_HTTPSERVER_HTTPSERVER_GENERALTYPES_SOUND_H_
 
 #include <string>
 
@@ -8,4 +8,4 @@ struct Sound {
     std::string content;
 };
 
-#endif //HTTPSERVER_SOUND_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_GENERALTYPES_SOUND_H_

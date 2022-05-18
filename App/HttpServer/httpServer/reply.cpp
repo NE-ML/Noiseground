@@ -61,17 +61,16 @@ namespace status_strings {
         }
     }
 
-} // namespace status_strings
+}  // namespace status_strings
 
 namespace misc_strings {
 
     const char name_value_separator[] = { ':', ' ' };
     const char crlf[] = { '\r', '\n' };
 
-} // namespace misc_strings
+}  // namespace misc_strings
 
-std::vector<boost::asio::const_buffer> Reply::to_buffers()
-{
+std::vector<boost::asio::const_buffer> Reply::to_buffers() {
     std::vector<boost::asio::const_buffer> buffers;
     buffers.push_back(status_strings::to_buffer(status));
     for (std::size_t i = 0; i < headers.size(); ++i) {
@@ -204,7 +203,7 @@ namespace stock_replies {
         }
     }
 
-} // namespace stock_replies
+}  // namespace stock_replies
 
 Reply Reply::stock_reply(Reply::status_type status) {
     Reply rep;

@@ -1,7 +1,8 @@
-#ifndef HTTPCLIENT_ROUTER_H
-#define HTTPCLIENT_ROUTER_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_ROUTER_H_
+#define APP_HTTPSERVER_HTTPSERVER_ROUTER_H_
 
 #include <string>
+#include <memory>
 #include <boost/noncopyable.hpp>
 
 #include "soundManager.h"
@@ -10,10 +11,10 @@
 #include "request.h"
 
 class Router : private boost::noncopyable {
-public:
+ public:
     explicit Router(std::string doc_root);
     void handle_request(const Request& req, Reply& rep);
-private:
+ private:
     std::string doc_root_;
     std::shared_ptr<SoundManager> soundManager;
     std::shared_ptr<UserManager> userManager;
@@ -21,4 +22,4 @@ private:
 };
 
 
-#endif //HTTPCLIENT_ROUTER_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_ROUTER_H_

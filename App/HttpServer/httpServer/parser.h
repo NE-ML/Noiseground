@@ -1,5 +1,5 @@
-#ifndef HTTPSERVER_PARSER_H
-#define HTTPSERVER_PARSER_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_PARSER_H_
+#define APP_HTTPSERVER_HTTPSERVER_PARSER_H_
 
 #include <boost/logic/tribool.hpp>
 #include <boost/tuple/tuple.hpp>
@@ -7,15 +7,13 @@
 struct Request;
 
 class Parser {
-public:
+ public:
     Parser();
     void reset();
     template <typename InputIterator>
     boost::tuple<boost::tribool, InputIterator> parse(Request& req,
-                                                      InputIterator begin, InputIterator end)
-    {
-        while (begin != end)
-        {
+                                                      InputIterator begin, InputIterator end) {
+        while (begin != end) {
             boost::tribool result = consume(req, *begin++);
             if (result || !result)
                 return boost::make_tuple(result, begin);
@@ -24,15 +22,14 @@ public:
         return boost::make_tuple(result, begin);
     }
 
-private:
+ private:
     boost::tribool consume(Request& req, char input);
     static bool is_char(int c);
     static bool is_ctl(int c);
     static bool is_tspecial(int c);
     static bool is_digit(int c);
 
-    enum state
-    {
+    enum state {
         method_start,
         method,
         uri,
@@ -56,4 +53,4 @@ private:
     } state_;
 };
 
-#endif //HTTPSERVER_PARSER_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_PARSER_H_

@@ -1,5 +1,5 @@
-#ifndef HTTPCLIENT_USER_H
-#define HTTPCLIENT_USER_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_GENERALTYPES_USER_H_
+#define APP_HTTPSERVER_HTTPSERVER_GENERALTYPES_USER_H_
 
 #include <string>
 
@@ -8,4 +8,4 @@ struct User {
     std::string password;
 };
 
-#endif //HTTPCLIENT_USER_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_GENERALTYPES_USER_H_

@@ -8,16 +8,20 @@
 #include <boost/algorithm/string.hpp>
 
 std::string Serializer::encode64(const std::string &val) {
-    using namespace boost::archive::iterators;
+    using boost::archive::iterators::base64_from_binary;
+    using boost::archive::iterators::transform_width;
     using It = base64_from_binary<transform_width<std::string::const_iterator, 6, 8>>;
     auto tmp = std::string(It(std::begin(val)), It(std::end(val)));
     return tmp.append((3 - val.size() % 3) % 3, '=');
 }
 
 std::string Serializer::decode64(const std::string &val) {
-    using namespace boost::archive::iterators;
+    using boost::archive::iterators::binary_from_base64;
+    using boost::archive::iterators::transform_width;
     using It = transform_width<binary_from_base64<std::string::const_iterator>, 8, 6>;
-    return boost::algorithm::trim_right_copy_if(std::string(It(std::begin(val)), It(std::end(val))), [](char c) {
+    return boost::algorithm::trim_right_copy_if(std::string(It(std::begin(val)),
+                                                            It(std::end(val))),
+                                                         [](char c) {
         return c == '\0';
     });
 }
@@ -27,7 +31,7 @@ std::string Serializer::serialSounds(std::vector<Sound> &sounds) {
     boost::property_tree::ptree json;
     json.put("count", sounds.size());
     boost::property_tree::ptree sounds_nodes;
-    for (auto &i: sounds) {
+    for (auto &i : sounds) {
         boost::property_tree::ptree node;
         node.put("name", i.name);
         node.put("data", encode64(i.content));

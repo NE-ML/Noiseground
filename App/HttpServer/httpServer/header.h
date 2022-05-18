@@ -1,12 +1,11 @@
-#ifndef HTTPSERVER_HEADER_H
-#define HTTPSERVER_HEADER_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_HEADER_H_
+#define APP_HTTPSERVER_HTTPSERVER_HEADER_H_
 
 #include <string>
 
-struct Header
-{
+struct Header {
     std::string name;
     std::string value;
 };
 
-#endif // HTTPSERVER_HEADER_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_HEADER_H_

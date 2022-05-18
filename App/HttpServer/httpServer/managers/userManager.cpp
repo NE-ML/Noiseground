@@ -1,5 +1,7 @@
 #include "userManager.h"
 
+#include <vector>
+
 UserManager::UserManager()
         : userModel(std::make_shared<UserModel>()),
         serializer(std::make_shared<Serializer>()) {}
@@ -13,7 +15,7 @@ void UserManager::loginUser(const std::string &request_path, Reply& rep) {
         return;
     }
     rep.status = Reply::forbidden;
-};
+}
 
 void UserManager::createUser(const Request &req, Reply &rep) {
     auto body = std::find_if(req.headers.begin(), req.headers.end(),

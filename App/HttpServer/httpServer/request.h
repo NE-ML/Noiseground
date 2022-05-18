@@ -1,13 +1,12 @@
-#ifndef HTTPCLIENT_SERVERTYPES_H
-#define HTTPCLIENT_SERVERTYPES_H
+#ifndef APP_HTTPSERVER_HTTPSERVER_REQUEST_H_
+#define APP_HTTPSERVER_HTTPSERVER_REQUEST_H_
 
 #include <string>
 #include <vector>
 
 #include "header.h"
 
-struct Request
-{
+struct Request {
     std::string method;
     std::string uri;
     int http_version_major;
@@ -15,4 +14,4 @@ struct Request
     std::vector<Header> headers;
 };
 
-#endif //HTTPCLIENT_SERVERTYPES_H
+#endif  // APP_HTTPSERVER_HTTPSERVER_REQUEST_H_
