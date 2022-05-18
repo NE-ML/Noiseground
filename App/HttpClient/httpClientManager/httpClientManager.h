@@ -1,10 +1,13 @@
-#ifndef HTTPCLIENT_HTTPCLIENTMANAGER_H
-#define HTTPCLIENT_HTTPCLIENTMANAGER_H
+#ifndef APP_HTTPCLIENT_HTTPCLIENTMANAGER_HTTPCLIENTMANAGER_H_
+#define APP_HTTPCLIENT_HTTPCLIENTMANAGER_HTTPCLIENTMANAGER_H_
+
+#include <string>
+#include <vector>
 
 #include "httpClient.h"
 
 class HttpClientManager {
-public:
+ public:
     HttpClientManager(const std::string &domain, const std::string &ip, const unsigned short &port,
                       std::string saved_path_);
     unsigned int getStdSounds();
@@ -15,7 +18,7 @@ public:
     unsigned int deleteSound(const std::string &login, const std::string &sound_name);
     unsigned int changeSound(const std::string &login, const std::string &sound_name,
                              const std::string &path_to_new_sound);
-private:
+ private:
     std::string saved_path;
     Host host;
     HttpClient client;
@@ -24,4 +27,4 @@ private:
 };
 
 
-#endif //HTTPCLIENT_HTTPCLIENTMANAGER_H
+#endif  // APP_HTTPCLIENT_HTTPCLIENTMANAGER_HTTPCLIENTMANAGER_H_

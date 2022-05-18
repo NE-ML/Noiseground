@@ -1,25 +1,31 @@
-#ifndef NOISEGROUND_HTTPCLIENT_H
-#define NOISEGROUND_HTTPCLIENT_H
+#ifndef APP_HTTPCLIENT_HTTPCLIENT_HTTPCLIENT_H_
+#define APP_HTTPCLIENT_HTTPCLIENT_HTTPCLIENT_H_
 
-#include <boost/asio.hpp>
 #include <utility>
+#include <memory>
+#include <string>
+#include <boost/asio.hpp>
 
 #include "clientTypes.h"
 #include "serializer.h"
 
 class HttpClient {
-public:
+ public:
     HttpClient();
     ResponseStruct makeGetRequest(const Host& host, const std::string& target,
                                   const std::shared_ptr<Params>& params = nullptr,
                                   const std::shared_ptr<Params>& headers = nullptr);
-    ResponseStruct makePostRequest(const Host& host, const std::string& target, const std::shared_ptr<Params>& body,
+    ResponseStruct makePostRequest(const Host& host, const std::string& target,
+                                   const std::shared_ptr<Params>& body,
                                    const std::shared_ptr<Params>& headers = nullptr);
-    ResponseStruct makeDeleteRequest(const Host& host, const std::string& target, const std::shared_ptr<Params>& body,
+    ResponseStruct makeDeleteRequest(const Host& host, const std::string& target,
+                                     const std::shared_ptr<Params>& body,
                                      const std::shared_ptr<Params>& headers = nullptr);
-    ResponseStruct makePutRequest(const Host& host, const std::string& target, const std::shared_ptr<Params>& body,
+    ResponseStruct makePutRequest(const Host& host, const std::string& target,
+                                  const std::shared_ptr<Params>& body,
                                   const std::shared_ptr<Params>& headers = nullptr);
-private:
+
+ private:
     static ResponseStruct parseResponse(Response response);
     static std::string createURL(const std::string& target, const std::shared_ptr<Params>& params = nullptr);
     bool connect(unsigned short port);
@@ -37,4 +43,4 @@ private:
 };
 
 
-#endif //NOISEGROUND_HTTPCLIENT_H
+#endif  // APP_HTTPCLIENT_HTTPCLIENT_HTTPCLIENT_H_

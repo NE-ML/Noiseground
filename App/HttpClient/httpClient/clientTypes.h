@@ -1,10 +1,11 @@
-#ifndef HTTPCLIENT_CLIENTTYPES_H
-#define HTTPCLIENT_CLIENTTYPES_H
+#ifndef APP_HTTPCLIENT_HTTPCLIENT_CLIENTTYPES_H_
+#define APP_HTTPCLIENT_HTTPCLIENT_CLIENTTYPES_H_
 
-#include <boost/beast.hpp>
+#include <string>
 #include <map>
 #include <utility>
 #include <vector>
+#include <boost/beast.hpp>
 
 using Response = boost::beast::http::response<boost::beast::http::dynamic_body>;
 using Request = boost::beast::http::request<boost::beast::http::string_body>;
@@ -30,4 +31,4 @@ struct Host {
             : domain(std::move(domain)), ip(std::move(ip)), port(port) {}
 };
 
-#endif //HTTPCLIENT_CLIENTTYPES_H
+#endif  // APP_HTTPCLIENT_HTTPCLIENT_CLIENTTYPES_H_

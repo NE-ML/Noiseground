@@ -2,8 +2,13 @@
 
 #include <fstream>
 #include <utility>
+#include <vector>
+#include <string>
+#include <memory>
 
-HttpClientManager::HttpClientManager(const std::string &domain, const std::string &ip, const unsigned short &port,
+HttpClientManager::HttpClientManager(const std::string &domain,
+                                     const std::string &ip,
+                                     const unsigned short &port,
                                      std::string saved_path_)
                 : host(domain, ip, port), client(), serializer(), saved_path(std::move(saved_path_)) {}
 

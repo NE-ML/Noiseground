@@ -1,11 +1,11 @@
-#include <iostream>
-#include <boost/lexical_cast.hpp>
-#include <boost/property_tree/json_parser.hpp>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/system/error_code.hpp>
-#include <utility>
-
 #include "httpClient.h"
+
+#include <iostream>
+#include <string>
+#include <memory>
+#include <utility>
+#include <boost/lexical_cast.hpp>
+#include <boost/system/error_code.hpp>
 
 using Error = boost::system::system_error;
 
@@ -13,7 +13,7 @@ std::string HttpClient::createURL(const std::string& target, const std::shared_p
     if (!params)
         return target;
     std::string url = target + "?";
-    for (const auto& item: *params) {
+    for (const auto& item : *params) {
         url += item.first + "=" + item.second + "&";
     }
     url.pop_back();
@@ -34,8 +34,10 @@ bool HttpClient::connect(unsigned short port = 80) {
 
 HttpClient::HttpClient() : socket(context), resolver(context) {}
 
-ResponseStruct HttpClient::makeRequest(const Host &host, const std::string &target, boost::beast::http::verb method,
-                                       const std::shared_ptr<Params>& params, const std::shared_ptr<Params>& body,
+ResponseStruct HttpClient::makeRequest(const Host &host, const std::string &target,
+                                       const boost::beast::http::verb method,
+                                       const std::shared_ptr<Params>& params,
+                                       const std::shared_ptr<Params>& body,
                                        const std::shared_ptr<Params>& headers) {
     HttpClient::ip = host.ip;
 
@@ -54,7 +56,7 @@ ResponseStruct HttpClient::makeRequest(const Host &host, const std::string &targ
     request.set(boost::beast::http::field::user_agent, BOOST_BEAST_VERSION_STRING);
 
     if (headers) {
-        for (const auto& iter: *headers) {
+        for (const auto& iter : *headers) {
             request.set(iter.first, iter.second);
         }
     }
