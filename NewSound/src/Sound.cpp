@@ -1,4 +1,5 @@
 #include "Sounds.h"
+#include <iostream>
 
 /// Sounds
 void Sounds::playMusic() {
@@ -20,31 +21,31 @@ void Sounds::setVolume(int vol) {
 void Sounds::setTime(int time) {
 }
 
-void Sounds::loadMusic(const string& pathFile) {
+void Sounds::loadMusic(const std::string &pathFile) {
     try {
         if (!music.openFromFile(pathFile))
             throw "File does not exist";
     }
-    catch (const char* msg) {
-        cerr << msg << endl;
+    catch (const char *msg) {
+        std::cerr << msg << std::endl;
     }
     music.setLoop(true);
 }
 
-SoundSource::Status Sounds::getStatus() {
+sf::SoundSource::Status Sounds::getStatus() {
     return music.getStatus();
 }
 
 
-vector<string> Sounds::getSounds() {
-    map<int, string> tracks = {
+std::vector<std::string> Sounds::getSounds() {
+    std::map<int, std::string> tracks = {
             {1, "birds.wav"},
             {2, "killdeer.wav"},
             {3, "waves.wav"},
             {4, "rain.wav"},
     };
-    vector<string> vector_of_sound_names;
-    for(auto & track : tracks)
+    std::vector<std::string> vector_of_sound_names;
+    for (auto &track: tracks)
         vector_of_sound_names.push_back(track.second);
 
     return vector_of_sound_names;
@@ -52,9 +53,9 @@ vector<string> Sounds::getSounds() {
 
 
 /// Musics
-void Musics::loadMusics(const string& pathFile) {
-    vector<string> musicNames = Sounds::getSounds();
-    for(int i = 0; i < musicNames.size(); i++)
+void Musics::loadMusics(const std::string &pathFile) {
+    std::vector<std::string> musicNames = Sounds::getSounds();
+    for (int i = 0; i < musicNames.size(); i++)
         musicMap[i].loadMusic(pathFile + musicNames[i]);
 }
 
