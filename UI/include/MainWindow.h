@@ -17,7 +17,7 @@ public:
 
     ~MainWindow();
     
-    SignUpDialog *getSignUpDialog();
+    std::shared_ptr<SignUpDialog> getSignUpDialog();
 
 private slots:
 
@@ -28,8 +28,8 @@ private slots:
     void on_SignUp_clicked();
 
 private:
-    AuthDialog *auth = nullptr;
-    SignUpDialog *signupButton = nullptr;
+    std::shared_ptr<AuthDialog> auth = nullptr;
+    std::shared_ptr<SignUpDialog> signupButton = nullptr;
     QWidget *centralwidget = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
     QLabel *label = nullptr;

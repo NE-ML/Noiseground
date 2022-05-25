@@ -9,13 +9,12 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setupUi(this);
-    auth = new AuthDialog();
+    auth = std::make_shared<AuthDialog>();
     auth->setModal(true);
-    connect(auth, &AuthDialog::showMainWindow, this, &MainWindow::show);
-    signupButton = new SignUpDialog();
+    connect(auth.get(), &AuthDialog::showMainWindow, this, &MainWindow::show);
+    signupButton = std::make_shared<SignUpDialog>();
     signupButton->setModal(true);
-    connect(signupButton, &SignUpDialog::showMainWindow, this, &MainWindow::show);
-    //connect(ui->AuthDialog::backButton, &QPushButton::clicked, this, &QMainWindow::show);
+    connect(signupButton.get(), &SignUpDialog::showMainWindow, this, &MainWindow::show);
 }
 
 MainWindow::~MainWindow() {
@@ -118,6 +117,6 @@ void MainWindow::on_SignUp_clicked() {
     signupButton->exec();
 }
 
-SignUpDialog *MainWindow::getSignUpDialog() {
+std::shared_ptr<SignUpDialog> MainWindow::getSignUpDialog() {
     return signupButton;
 }

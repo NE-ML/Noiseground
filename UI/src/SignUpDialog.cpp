@@ -9,19 +9,7 @@ SignUpDialog::SignUpDialog(QWidget *parent) : QDialog(parent) {
 }
 
 SignUpDialog::~SignUpDialog() {
-    delete groupBox;
-    delete layoutWidget;
-    delete verticalLayout;
-    delete verticalLayout_2;
-    delete gridLayout;
-    delete gridLayout_2;
-    delete enterLoginLabel;
-    delete enterPasswordLabel;
-    delete repeatPasswordLabel;
-    delete pass;
-    delete passRepeat;
-    delete login;
-    delete signupButton;
+
 }
 
 void SignUpDialog::on_signupButton_clicked() {
