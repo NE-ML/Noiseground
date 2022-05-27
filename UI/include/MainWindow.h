@@ -10,42 +10,39 @@
 #include "SignUpDialog.h"
 
 class MainWindow : public QMainWindow {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
-
     ~MainWindow();
     
     std::shared_ptr<SignUpDialog> getSignUpDialog();
+    std::shared_ptr<AuthDialog> getAuthDialog();
 
 private slots:
+    void onExitButtonClicked();
 
-    void on_Exit_clicked();
+    void onLoginButtonClicked();
 
-    void on_Login_clicked();
-
-    void on_SignUp_clicked();
+    void onSignUpButtonClicked();
 
 private:
-    std::shared_ptr<AuthDialog> auth = nullptr;
-    std::shared_ptr<SignUpDialog> signupButton = nullptr;
+    std::shared_ptr<AuthDialog> authDialog = nullptr;
+    std::shared_ptr<SignUpDialog> signUpDialog = nullptr;
     QWidget *centralwidget = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
     QLabel *label = nullptr;
-    QPushButton *Login = nullptr;
+    QPushButton *loginButton = nullptr;
     QSpacerItem *horizontalSpacer = nullptr;
-    QPushButton *SignUp = nullptr;
+    QPushButton *signUpButton = nullptr;
     QSpacerItem *horizontalSpacer_2 = nullptr;
-    QPushButton *Exit = nullptr;
+    QPushButton *exitButton = nullptr;
     QMenuBar *menubar = nullptr;
     QStatusBar *statusbar = nullptr;
-
+    
     void setupUi(QMainWindow *MainWindow);
 
     void retranslateUi(QMainWindow *MainWindow);
-
-    friend class UIManager;
 };
 
 #endif // MAINWINDOW_H

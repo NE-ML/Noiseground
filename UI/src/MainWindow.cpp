@@ -5,16 +5,19 @@
 #include <QApplication>
 #include <QCoreApplication>
 #include "AuthDialog.h"
-#include "SignUpDialog.h"
+#include"SignUpDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setupUi(this);
-    auth = std::make_shared<AuthDialog>();
-    auth->setModal(true);
-    connect(auth.get(), &AuthDialog::showMainWindow, this, &MainWindow::show);
-    signupButton = std::make_shared<SignUpDialog>();
-    signupButton->setModal(true);
-    connect(signupButton.get(), &SignUpDialog::showMainWindow, this, &MainWindow::show);
+    authDialog = std::make_shared<AuthDialog>();
+    authDialog->setModal(true);
+    connect(authDialog.get(), &AuthDialog::showMainWindow, this, &MainWindow::show);
+    signUpDialog = std::make_shared<SignUpDialog>();
+    signUpDialog->setModal(true);
+    connect(signUpDialog.get(), &SignUpDialog::showMainWindow, this, &MainWindow::show);
+    connect(signUpButton, &QPushButton::clicked, this, &MainWindow::onSignUpButtonClicked);
+    connect(loginButton, &QPushButton::clicked, this, &MainWindow::onLoginButtonClicked);
+    connect(exitButton, &QPushButton::clicked, this, &MainWindow::onExitButtonClicked);
 }
 
 MainWindow::~MainWindow() {
@@ -46,37 +49,37 @@ void MainWindow::setupUi(QMainWindow *MainWindow) {
 
     verticalLayout->addWidget(label, 0, Qt::AlignHCenter);
 
-    Login = new QPushButton(centralwidget);
-    Login->setObjectName(QString::fromUtf8("Login"));
+    loginButton = new QPushButton(centralwidget);
+    loginButton->setObjectName(QString::fromUtf8("loginButton"));
     QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Preferred);
     sizePolicy1.setHorizontalStretch(0);
     sizePolicy1.setVerticalStretch(0);
-    sizePolicy1.setHeightForWidth(Login->sizePolicy().hasHeightForWidth());
-    Login->setSizePolicy(sizePolicy1);
+    sizePolicy1.setHeightForWidth(loginButton->sizePolicy().hasHeightForWidth());
+    loginButton->setSizePolicy(sizePolicy1);
 
-    verticalLayout->addWidget(Login);
+    verticalLayout->addWidget(loginButton);
 
     horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
     verticalLayout->addItem(horizontalSpacer);
 
-    SignUp = new QPushButton(centralwidget);
-    SignUp->setObjectName(QString::fromUtf8("SignUp"));
-    sizePolicy1.setHeightForWidth(SignUp->sizePolicy().hasHeightForWidth());
-    SignUp->setSizePolicy(sizePolicy1);
+    signUpButton = new QPushButton(centralwidget);
+    signUpButton->setObjectName(QString::fromUtf8("signUpButton"));
+    sizePolicy1.setHeightForWidth(signUpButton->sizePolicy().hasHeightForWidth());
+    signUpButton->setSizePolicy(sizePolicy1);
 
-    verticalLayout->addWidget(SignUp);
+    verticalLayout->addWidget(signUpButton);
 
     horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
     verticalLayout->addItem(horizontalSpacer_2);
 
-    Exit = new QPushButton(centralwidget);
-    Exit->setObjectName(QString::fromUtf8("Exit"));
-    sizePolicy1.setHeightForWidth(Exit->sizePolicy().hasHeightForWidth());
-    Exit->setSizePolicy(sizePolicy1);
+    exitButton = new QPushButton(centralwidget);
+    exitButton->setObjectName(QString::fromUtf8("exitButton"));
+    sizePolicy1.setHeightForWidth(exitButton->sizePolicy().hasHeightForWidth());
+    exitButton->setSizePolicy(sizePolicy1);
 
-    verticalLayout->addWidget(Exit);
+    verticalLayout->addWidget(exitButton);
 
     MainWindow->setCentralWidget(centralwidget);
     menubar = new QMenuBar(MainWindow);
@@ -88,35 +91,37 @@ void MainWindow::setupUi(QMainWindow *MainWindow) {
     MainWindow->setStatusBar(statusbar);
 
     retranslateUi(MainWindow);
-
-    QMetaObject::connectSlotsByName(MainWindow);
 } // setupUi
 
 void MainWindow::retranslateUi(QMainWindow *MainWindow) {
     MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
     label->setText(QCoreApplication::translate("MainWindow",
-                                               "<html><head/><body><p align=\"center\"><span style=\" color:#1c71d8;\">Noiseground Login Page</span></p></body></html>",
+                                               "<html><head/><body><p align=\"center\"><span style=\" color:#1c71d8;\">Noiseground loginButton Page</span></p></body></html>",
                                                nullptr));
-    Login->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
-    SignUp->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
-    Exit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+    loginButton->setText(QCoreApplication::translate("MainWindow", "loginButton", nullptr));
+    signUpButton->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
+    exitButton->setText(QCoreApplication::translate("MainWindow", "exitButton", nullptr));
 }
 
-void MainWindow::on_Exit_clicked() {
+void MainWindow::onExitButtonClicked() {
     QApplication::quit();
 }
 
-void MainWindow::on_Login_clicked() {
+void MainWindow::onLoginButtonClicked() {
     hide();
-    auth->exec();
+    authDialog->exec();
 }
 
 
-void MainWindow::on_SignUp_clicked() {
+void MainWindow::onSignUpButtonClicked() {
     hide();
-    signupButton->exec();
+    signUpDialog->exec();
 }
 
 std::shared_ptr<SignUpDialog> MainWindow::getSignUpDialog() {
-    return signupButton;
+    return signUpDialog;
+}
+
+std::shared_ptr<AuthDialog> MainWindow::getAuthDialog() {
+    return authDialog;
 }

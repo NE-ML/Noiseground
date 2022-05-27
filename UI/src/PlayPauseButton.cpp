@@ -3,7 +3,7 @@
 PlayPauseButton::PlayPauseButton(int soundId, PPButtonState defaultState, QWidget *parent) : soundId(soundId),
                                                                                              QPushButton(parent),
                                                                                              state(defaultState) {
-    switch (defaultState) {
+    switch(defaultState) {
         case PPButtonState::Paused:
             setText("Play");
             break;
@@ -23,9 +23,9 @@ void PlayPauseButton::changeState() {
             state = PPButtonState::Paused;
             setText("Play");
             // setIcon(pauseIcon);
-            break;
             emit pause(soundId);
-
+            break;
+            
         case PPButtonState::Paused:
             state = PPButtonState::Playing;
             setText("Pause");
@@ -33,7 +33,7 @@ void PlayPauseButton::changeState() {
             emit play(soundId);
             break;
         default:
-            throw std::runtime_error("Invalid state");
+            setText("Wrong state");
     }
 }
 
@@ -42,19 +42,19 @@ PPButtonState PlayPauseButton::getState() {
 }
 
 
-void PlayPauseButton::setState(PPButtonState state) {
-    switch (state) {
+void PlayPauseButton::setState(PPButtonState newState) {
+    switch (newState) {
         case PPButtonState::Paused:
-            this->state = state;
+            this->state = newState;
             setText("Play");
             // setIcon(pauseIcon);
             break;
         case PPButtonState::Playing:
-            this->state = state;
+            this->state = newState;
             setText("Pause");
             // setIcon(pauseIcon);
             break;
         default:
-            throw std::runtime_error("Invalid state");
+            setText("Wrong newState");
     }
 }

@@ -4,33 +4,33 @@
 #include <QApplication>
 #include <QMessageBox>
 
+#include "Core.h"
+
 AuthDialog::AuthDialog(QWidget *parent) : QDialog(parent) {
     setupUi(this);
 }
 
 AuthDialog::~AuthDialog() {
-    delete label;
-    delete label_2;
-    delete label_3;
-    delete groupBox;
-    delete login;
-    delete password;
-    delete layoutWidget;
-    delete verticalLayout;
-    delete horizontalLayout;
-    delete horizontalLayout_2;
 }
 
 void AuthDialog::on_loginButton_clicked() {
-    QString log = login->text();
-    QString pass = password->text();
-    // send data to server
-    // bool response = ...
-    // if (response) {
-    //     proceed
-    // } else {
-    QMessageBox::warning(this, "Ошибка авторизации", "Пароль неверный");
-    // }
+    std::string log = login->text().toStdString();
+    std::string pass = password->text().toStdString();
+    if (log.empty() || pass.empty()) {
+        QMessageBox::warning(this, "Ошибка авторизации", "Логин и пароль не могут быть пустыми");
+    }
+    unsigned result = Core::login(log, pass);
+    switch (result) {
+        case 200:
+            this->close();
+            emit showUserWindow();
+            break;
+        case 403:
+            QMessageBox::warning(this, "Ошибка авторизации","Неправильный логин или пароль");
+            break;
+        default:
+            QMessageBox::warning(this, "Авторизация невозможна", "Нет соединения с сервером");
+    }
 }
 
 void AuthDialog::setupUi(QDialog *AuthDialog) {

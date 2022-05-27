@@ -12,7 +12,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(include)
+include_directories(include ../common)
 
 set(UI_SOURCES
         src/MainWindow.cpp
@@ -32,13 +32,9 @@ set(UI_HEADERS
         include/SoundBox.h
         include/PlayPauseButton.h)
 
-add_library(UI STATIC ${UI_SOURCES} ${UI_HEADERS})
+add_library(UI STATIC ${UI_SOURCES} ${UI_HEADERS} )
 
 target_link_libraries(UI PRIVATE Qt5::Widgets)
-
-add_executable(main src/main.cpp src/Core.cpp)
-
-target_link_libraries(main UI Qt5::Widgets)
 
 enable_testing()
 
