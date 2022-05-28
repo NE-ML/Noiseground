@@ -27,7 +27,7 @@ if(Boost_FOUND)
     target_link_libraries(httpServer SoundManager UserManager)
 
     add_executable(httpServer_run main.cpp)
-    target_link_libraries(httpServer_run ${Boost_LIBRARIES})
     target_link_libraries(httpServer_run httpServer)
+    target_link_libraries(httpServer_run ${Boost_LIBRARIES})
     target_link_libraries(httpServer_run pthread)
 endif()
