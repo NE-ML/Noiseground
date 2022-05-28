@@ -7,10 +7,10 @@ find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 
-include_directories(NewSound/headers UI/include common HttpClient/httpClient HttpClient/httpClientManager)
+include_directories(Sound/headers UI/include common HttpClient/httpClient HttpClient/httpClientManager)
 
 add_subdirectory(UI)
-add_subdirectory(NewSound)
+add_subdirectory(Sound)
 add_subdirectory(HttpClient)
 
 
