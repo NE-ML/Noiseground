@@ -40,6 +40,9 @@ sf::SoundSource::Status Sounds::getStatus() {
 
 vector<string> Sounds::getSounds(const std::string &path) {
     std::vector<std::string> res;
+    if (!std::filesystem::exists(path)) {
+        std::filesystem::create_directory(path);
+    }
     for (const auto & entry : std::filesystem::directory_iterator(path)) {
         std::string tmp;
         std::string path_string = entry.path().string();
