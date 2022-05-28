@@ -9,12 +9,6 @@
 #include <QScrollArea>
 #include "SoundBox.h"
 
-/*QT_BEGIN_NAMESPACE
-namespace Ui {
-    class UserWindow;
-}
-QT_END_NAMESPACE*/
-
 class UserWindow : public QMainWindow {
     Q_OBJECT
 
