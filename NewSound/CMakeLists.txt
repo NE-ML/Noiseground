@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 project(Noiseground_sound)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 11)
 include_directories(Frameworks/googletest/googletest/include)
 
 add_subdirectory(src)

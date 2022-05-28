@@ -1,7 +1,8 @@
 #include "Sounds.h"
-#include <iostream>
 
+#include <filesystem>
 /// Sounds
+
 void Sounds::playMusic() {
     music.play();
 }
@@ -21,13 +22,13 @@ void Sounds::setVolume(int vol) {
 void Sounds::setTime(int time) {
 }
 
-void Sounds::loadMusic(const std::string &pathFile) {
+void Sounds::loadMusic(const string& pathFile) {
     try {
         if (!music.openFromFile(pathFile))
             throw "File does not exist";
     }
-    catch (const char *msg) {
-        std::cerr << msg << std::endl;
+    catch (const char* msg) {
+        cerr << msg << endl;
     }
     music.setLoop(true);
 }
@@ -37,26 +38,24 @@ sf::SoundSource::Status Sounds::getStatus() {
 }
 
 
-std::vector<std::string> Sounds::getSounds() {
-    std::map<int, std::string> tracks = {
-            {1, "birds.wav"},
-            {2, "killdeer.wav"},
-            {3, "waves.wav"},
-            {4, "rain.wav"},
-    };
-    std::vector<std::string> vector_of_sound_names;
-    for (auto &track: tracks)
-        vector_of_sound_names.push_back(track.second);
-
-    return vector_of_sound_names;
+vector<string> Sounds::getSounds(const std::string &path) {
+    std::vector<std::string> res;
+    for (const auto & entry : std::filesystem::directory_iterator(path)) {
+        std::string tmp;
+        std::string path_string = entry.path().string();
+        std::size_t slash_pos = path_string.rfind('/');
+        tmp = path_string.substr(slash_pos + 1, path_string.size() - slash_pos - 1);
+        res.push_back(tmp);
+    }
+    return res;
 }
 
 
 /// Musics
-void Musics::loadMusics(const std::string &pathFile) {
-    std::vector<std::string> musicNames = Sounds::getSounds();
+void Musics::loadMusics(const string& pathFile) {
+    vector<string> musicNames = Sounds::getSounds(pathFile);
     for (int i = 0; i < musicNames.size(); i++)
-        musicMap[i].loadMusic(pathFile + musicNames[i]);
+        musicMap[i + 1].loadMusic(pathFile + musicNames[i]);
 }
 
 void Musics::play(int id, int volume) {
