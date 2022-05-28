@@ -3,7 +3,7 @@ project(tests)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(../App/HttpClient/httpClient ../App/HttpServer/httpServer
+include_directories(../HttpClient/httpClient ../App/HttpServer/httpServer
         ../App/HttpServer/httpServer/managers)
 
 add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
