@@ -17,3 +17,7 @@ QMainWindow {
 QDialog {
     background: aquamarine;
 }
+
+QGroupBox {
+    background: lightblue; 
+}
