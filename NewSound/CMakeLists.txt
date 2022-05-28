@@ -4,8 +4,9 @@ project(Noiseground_sound)
 set(CMAKE_CXX_STANDARD 20)
 include_directories(Frameworks/googletest/googletest/include)
 
-add_subdirectory(src)
-include_directories(src)
+include_directories(headers)
+
+add_library(Sound src/Sound.cpp)
 
 enable_testing()
 find_package(GTest REQUIRED)

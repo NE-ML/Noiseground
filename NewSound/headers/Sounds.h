@@ -33,6 +33,8 @@ public:
 
     void changeVolume(int id, int volume);
 
+    bool isEmpty();
+
 private:
     std::map<int, Sounds> musicMap;
 };

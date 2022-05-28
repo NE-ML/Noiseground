@@ -74,3 +74,7 @@ void Musics::pause(int id) {
 void Musics::changeVolume(int id, int volume) {
     musicMap[id].setVolume(volume);
 }
+
+bool Musics::isEmpty() {
+    return musicMap.empty();
+}
