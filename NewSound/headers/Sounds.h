@@ -14,7 +14,7 @@ public:
     void setVolume(int volume);  // изменение громкости
     void setTime(int time);  // изменение время проигрывания
     sf::SoundSource::Status getStatus();  // получение статуса музыки
-    static std::vector<std::string> getSounds();  // получение названия звуков
+    static std::vector<std::string> getSounds(const std::string &path);  // получение названия звуков
     int getCount;
 private:
     int time{};
