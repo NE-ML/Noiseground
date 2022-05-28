@@ -11,7 +11,7 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
     std::vector<std::string> soundsTmp = Core::getStdSounds();
     std::for_each(soundsTmp.begin(), soundsTmp.end(), [this](const std::string &soundName) {
         unsigned dotPos = soundName.rfind('.');
-        soundNames.push_back("<html><head/><body><p align=\"center\">" + soundName.substr(0, dotPos + 1) + 
+        soundNames.push_back("<html><head/><body><p align=\"center\">" + soundName.substr(0, dotPos) + 
         "</p></body></html>");
     });
 
