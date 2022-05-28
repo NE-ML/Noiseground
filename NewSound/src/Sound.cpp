@@ -39,7 +39,7 @@ sf::SoundSource::Status Sounds::getStatus() {
 
 
 vector<string> Sounds::getSounds(const std::string &path) {
-    std::vector<std::string> res;
+    std::vector<std::string> soundNames;
     if (!std::filesystem::exists(path)) {
         std::filesystem::create_directory(path);
     }
@@ -48,9 +48,9 @@ vector<string> Sounds::getSounds(const std::string &path) {
         std::string path_string = entry.path().string();
         std::size_t slash_pos = path_string.rfind('/');
         tmp = path_string.substr(slash_pos + 1, path_string.size() - slash_pos - 1);
-        res.push_back(tmp);
+        soundNames.push_back(tmp);
     }
-    return res;
+    return soundNames;
 }
 
 
