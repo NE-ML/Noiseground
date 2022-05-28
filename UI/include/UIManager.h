@@ -15,8 +15,7 @@ public:
     void showUserWindow();
 
 private:
-    // TODO: @levbara
-    MainWindow mainWindow; // Передавать в конструктор UIManager извне
+    MainWindow mainWindow;
     UserWindow userWindow;
 };
 

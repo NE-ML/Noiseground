@@ -38,4 +38,4 @@ private:
     QWidget *centralwidget = nullptr;
 };
 
-#endif // USERWINDOW_H
+#endif  // USERWINDOW_H

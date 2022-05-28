@@ -28,10 +28,10 @@ private:
     QWidget *layoutWidget = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
     QHBoxLayout *horizontalLayout = nullptr;
-    QLabel *label_2 = nullptr;
+    QLabel *loginLabel = nullptr;
     QLineEdit *login = nullptr;
     QHBoxLayout *horizontalLayout_2 = nullptr;
-    QLabel *label_3 = nullptr;
+    QLabel *passwordLabel = nullptr;
     QLineEdit *password = nullptr;
     QPushButton *loginButton = nullptr;
     QPushButton *backButton = nullptr;
@@ -41,4 +41,4 @@ private:
     void retranslateUi(QDialog *AuthDialog);
 };
 
-#endif // AUTH_DIALOG_H
+#endif  // AUTH_DIALOG_H

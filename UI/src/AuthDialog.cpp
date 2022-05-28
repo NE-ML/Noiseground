@@ -63,10 +63,10 @@ void AuthDialog::setupUi(QDialog *AuthDialog) {
     verticalLayout->setContentsMargins(0, 0, 0, 0);
     horizontalLayout = new QHBoxLayout();
     horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-    label_2 = new QLabel(layoutWidget);
-    label_2->setObjectName(QString::fromUtf8("label_2"));
+    loginLabel = new QLabel(layoutWidget);
+    loginLabel->setObjectName(QString::fromUtf8("loginLabel"));
 
-    horizontalLayout->addWidget(label_2);
+    horizontalLayout->addWidget(loginLabel);
 
     login = new QLineEdit(layoutWidget);
     login->setObjectName(QString::fromUtf8("login"));
@@ -78,10 +78,10 @@ void AuthDialog::setupUi(QDialog *AuthDialog) {
 
     horizontalLayout_2 = new QHBoxLayout();
     horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-    label_3 = new QLabel(layoutWidget);
-    label_3->setObjectName(QString::fromUtf8("label_3"));
+    passwordLabel = new QLabel(layoutWidget);
+    passwordLabel->setObjectName(QString::fromUtf8("passwordLabel"));
 
-    horizontalLayout_2->addWidget(label_3);
+    horizontalLayout_2->addWidget(passwordLabel);
 
     password = new QLineEdit(layoutWidget);
     password->setObjectName(QString::fromUtf8("password"));
@@ -115,8 +115,8 @@ void AuthDialog::retranslateUi(QDialog *AuthDialog) {
     groupBox->setTitle(QCoreApplication::translate("AuthDialog",
                                                    "\320\220\320\262\321\202\320\276\321\200\320\270\320\267\320\260\321\206\320\270\321\217",
                                                    nullptr));
-    label_2->setText(QCoreApplication::translate("AuthDialog", "\320\233\320\276\320\263\320\270\320\275", nullptr));
-    label_3->setText(
+    loginLabel->setText(QCoreApplication::translate("AuthDialog", "\320\233\320\276\320\263\320\270\320\275", nullptr));
+    passwordLabel->setText(
             QCoreApplication::translate("AuthDialog", "\320\237\320\260\321\200\320\276\320\273\321\214", nullptr));
     loginButton->setText(
             QCoreApplication::translate("AuthDialog", "\320\222\320\276\320\271\321\202\320\270", nullptr));

@@ -29,4 +29,4 @@ private:
 };
 
 
-#endif //INCLUDE_SOUNDBOX_H_
+#endif  //INCLUDE_SOUNDBOX_H_
