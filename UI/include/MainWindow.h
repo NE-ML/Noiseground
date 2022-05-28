@@ -20,7 +20,7 @@ public:
     std::shared_ptr<AuthDialog> getAuthDialog();
 
 private slots:
-    void onExitButtonClicked();
+    static void onExitButtonClicked();
 
     void onLoginButtonClicked();
 

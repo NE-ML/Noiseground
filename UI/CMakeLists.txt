@@ -1,5 +1,3 @@
-project(Noiseground)
-
 cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_AUTOUIC ON)
@@ -12,7 +10,8 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(include ../common)
+include_directories(include)
+include_directories(common)
 
 set(UI_SOURCES
         src/MainWindow.cpp

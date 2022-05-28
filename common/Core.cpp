@@ -3,12 +3,17 @@
 #include "Sounds.h"
 #include "httpClientManager.h"
 
+const std::string CLIENT_DOMAIN = "";
+const std::string CLIENT_IP = "0.0.0.0";
+const unsigned CLIENT_PORT = 80;
+const std::string SOUNDS_PATH = "../std_sounds/";
+
 Musics musics;
-HttpClientManager client("", "0.0.0.0", 80, "../music_example/");
+HttpClientManager client(CLIENT_DOMAIN, CLIENT_IP, CLIENT_PORT, SOUNDS_PATH);
 
 void Core::play(int soundId, int volume) {
     if (musics.isEmpty()) {
-        musics.loadMusics("../music_example/");
+        musics.loadMusics(SOUNDS_PATH);
     }
     musics.play(soundId, volume);
 }
@@ -37,6 +42,10 @@ unsigned Core::login(const string &login, const string &pass) {
     return client.loginUser(login, pass);
 }
 
-unsigned Core::getStdSounds() {
+unsigned Core::downloadStdSounds() {
     return client.getStdSounds();
+}
+
+std::vector<std::string> Core::getStdSounds() {
+    return Sounds::getSounds(SOUNDS_PATH);
 }

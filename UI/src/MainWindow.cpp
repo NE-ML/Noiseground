@@ -96,11 +96,12 @@ void MainWindow::setupUi(QMainWindow *MainWindow) {
 void MainWindow::retranslateUi(QMainWindow *MainWindow) {
     MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
     label->setText(QCoreApplication::translate("MainWindow",
-                                               "<html><head/><body><p align=\"center\"><span style=\" color:#1c71d8;\">Noiseground loginButton Page</span></p></body></html>",
+                                               "<html><head/><body><p align=\"center\"><span style=\" color:#1c71d8;"
+                                               "\">Добро пожаловать в Noiseground!</span></p></body></html>",
                                                nullptr));
-    loginButton->setText(QCoreApplication::translate("MainWindow", "loginButton", nullptr));
-    signUpButton->setText(QCoreApplication::translate("MainWindow", "Sign Up", nullptr));
-    exitButton->setText(QCoreApplication::translate("MainWindow", "exitButton", nullptr));
+    loginButton->setText(QCoreApplication::translate("MainWindow", "Войти", nullptr));
+    signUpButton->setText(QCoreApplication::translate("MainWindow", "Зарегистрироваться", nullptr));
+    exitButton->setText(QCoreApplication::translate("MainWindow", "Выйти", nullptr));
 }
 
 void MainWindow::onExitButtonClicked() {

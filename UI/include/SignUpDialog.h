@@ -19,7 +19,7 @@ signals:
     void showUserWindow();
     
 private slots:
-    void on_signupButton_clicked();
+    void on_signUpButton_clicked();
     void on_backButton_clicked();
     
 private:
@@ -36,7 +36,7 @@ private:
     QHBoxLayout *horizontalLayout_3 = nullptr;
     QLabel *repeatPasswordLabel = nullptr;
     QLineEdit *passRepeat = nullptr;
-    QPushButton *signupButton = nullptr;
+    QPushButton *signUpButton = nullptr;
     QPushButton *backButton = nullptr;
     
     void setupUi(QDialog *SignUpDialog);

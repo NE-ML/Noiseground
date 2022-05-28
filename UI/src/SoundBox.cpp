@@ -1,10 +1,9 @@
-#include <QVBoxLayout>
-#include <QLabel>
-#include <iostream>
 #include "SoundBox.h"
 
-#include "../../common/Core.h"
+#include <QVBoxLayout>
+#include <QLabel>
 
+#include "Core.h"
 #include "PlayPauseButton.h"
 
 SoundBox::SoundBox(const std::pair<int, std::string> &data) : QGroupBox(), id(data.first), name(data.second) {
@@ -16,6 +15,7 @@ SoundBox::SoundBox(const std::pair<int, std::string> &data) : QGroupBox(), id(da
     sizePolicy.setHeightForWidth(this->sizePolicy().hasHeightForWidth());
     setSizePolicy(sizePolicy);
     setMinimumSize(QSize(150, 150));
+    setMaximumSize(QSize(150, 150));
     setBaseSize(QSize(0, 0));
 
     auto verticalLayout = new QVBoxLayout(this);
@@ -24,7 +24,7 @@ SoundBox::SoundBox(const std::pair<int, std::string> &data) : QGroupBox(), id(da
 
     auto label = new QLabel(this);
     label->setObjectName("soundNameLabel");
-    label->setText(QString::fromStdString("<html><head/><body><p align=\"center\">Audio" + data.second +
+    label->setText(QString::fromStdString("<html><head/><body><p align=\"center\">" + data.second +
                                           "</p></body></html>"));
 
     playPauseButton = new PlayPauseButton(data.first, PPButtonState::Paused, this);

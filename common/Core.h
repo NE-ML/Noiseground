@@ -2,6 +2,7 @@
 #define INCLUDE_CORE_H_
 
 #include <string>
+#include <vector>
 
 class Core {
 public:
@@ -17,7 +18,9 @@ public:
     
     static unsigned login(const std::string &login, const std::string &pass);
     
-    static unsigned getStdSounds();
+    static unsigned downloadStdSounds();
+    
+    static std::vector<std::string> getStdSounds();
 };
 
 

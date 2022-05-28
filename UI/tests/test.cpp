@@ -37,6 +37,13 @@ TEST(ConstructorTest, UIManagerUW) {
     a.exec();
 }
 
+TEST(ConstructorTest, MainWindow_AuthDialog) {
+    int fake_argc = 0;
+    QApplication a(fake_argc, nullptr);
+    MainWindow mainWindow;
+    EXPECT_NO_FATAL_FAILURE(mainWindow.getAuthDialog()->show());
+}
+
 int main(int argc, char *argv[]) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

@@ -20,28 +20,20 @@ class UserWindow : public QMainWindow {
 
 public:
     explicit UserWindow(QWidget *parent = nullptr);
-    ~UserWindow() override;
+    ~UserWindow() override = default;
 
 signals:
     void logout();
     
-private slots:
-    void on_playButton_clicked();
-    void on_logoutButton_clicked();
-
-private:
-    void drawSounds(const std::vector<std::string> &soundNames);
+private slots:    
+    void onBackButtonClicked();
     
-    std::vector<QString> soundNames;
+private:
+    
+    std::vector<std::string> soundNames;
     
     std::vector<SoundBox *> soundBoxes;
-    QWidget *widget = nullptr;
-    QVBoxLayout *verticalLayout = nullptr;
-    QPushButton *playButton = nullptr;
-    QSlider *volumeSlider = nullptr;
-    QMenuBar *menubar = nullptr;
-    QStatusBar *statusbar = nullptr;
-    QPushButton *logoutButton = nullptr;
+    QPushButton *backButton = nullptr;
     
     QScrollArea *scrollArea = nullptr;
     QWidget *scrollAreaWidgetContents = nullptr;
@@ -50,14 +42,6 @@ private:
     QGridLayout *gridLayout_2 = nullptr;
     
     QWidget *centralwidget = nullptr;
-    
-    QPushButton *pushButton = nullptr;
-
-    void setupUi(QMainWindow *UserWindow);
-
-    void retranslateUi(QMainWindow *UserWindow);
-    
-    friend class UIManager;
 };
 
 #endif // USERWINDOW_H

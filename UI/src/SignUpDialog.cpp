@@ -13,7 +13,7 @@ SignUpDialog::SignUpDialog(QWidget *parent) : QDialog(parent) {
 SignUpDialog::~SignUpDialog() {
 }
 
-void SignUpDialog::on_signupButton_clicked() {
+void SignUpDialog::on_signUpButton_clicked() {
     QString log = login->text();
     QString pass = this->pass->text();
     QString passRepeat = this->passRepeat->text();
@@ -44,7 +44,7 @@ void SignUpDialog::retranslateUi(QDialog *SignUpDialog) {
     repeatPasswordLabel->setText(QCoreApplication::translate("SignUpDialog",
                                                  "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
                                                  nullptr));
-    signupButton->setText(QCoreApplication::translate("SignUpDialog",
+    signUpButton->setText(QCoreApplication::translate("SignUpDialog",
                                                       "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217",
                                                       nullptr));
     backButton->setText(QCoreApplication::translate("SignUpDialog", "Назад", nullptr));
@@ -115,10 +115,10 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
 
     verticalLayout_2->addLayout(verticalLayout);
 
-    signupButton = new QPushButton(layoutWidget);
-    signupButton->setObjectName(QString::fromUtf8("signUpDialog"));
+    signUpButton = new QPushButton(layoutWidget);
+    signUpButton->setObjectName(QString::fromUtf8("signUpDialog"));
 
-    verticalLayout_2->addWidget(signupButton);
+    verticalLayout_2->addWidget(signUpButton);
 
     backButton = new QPushButton(layoutWidget);
     backButton->setObjectName(QString::fromUtf8("backButton"));
@@ -127,7 +127,8 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
 
     retranslateUi(SignUpDialog);
 
-    QMetaObject::connectSlotsByName(SignUpDialog);
+    connect(signUpButton, &QPushButton::clicked, this, &SignUpDialog::on_signUpButton_clicked);
+    connect(backButton, &QPushButton::clicked, this, &SignUpDialog::on_backButton_clicked);
 }
 
 void SignUpDialog::on_backButton_clicked() {
