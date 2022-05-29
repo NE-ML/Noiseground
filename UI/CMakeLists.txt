@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
+project(Noiseground)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -11,7 +12,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
-include_directories(common)
+include_directories(../common)
 
 set(UI_SOURCES
         src/MainWindow.cpp

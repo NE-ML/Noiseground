@@ -8,7 +8,7 @@
 #include <QLineEdit>
 
 class AuthDialog : public QDialog {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     explicit AuthDialog(QWidget *parent = nullptr);
@@ -35,7 +35,7 @@ private:
     QLineEdit *password = nullptr;
     QPushButton *loginButton = nullptr;
     QPushButton *backButton = nullptr;
-    
+
     void setupUi(QDialog *AuthDialog);
 
     void retranslateUi(QDialog *AuthDialog);

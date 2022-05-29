@@ -1,9 +1,8 @@
 #include "UIManager.h"
+
 #include "MainWindow.h"
 #include "UserWindow.h"
 #include "SignUpDialog.h"
-
-//#include "Sound.h"
 
 void UIManager::showMainWindow() {
     mainWindow.show();

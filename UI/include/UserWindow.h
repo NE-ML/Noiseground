@@ -10,7 +10,7 @@
 #include "SoundBox.h"
 
 class UserWindow : public QMainWindow {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     explicit UserWindow(QWidget *parent = nullptr);
@@ -18,23 +18,23 @@ public:
 
 signals:
     void logout();
-    
-private slots:    
+
+private slots:
     void onBackButtonClicked();
-    
+
 private:
-    
+
     std::vector<std::string> soundNames;
-    
+
     std::vector<SoundBox *> soundBoxes;
     QPushButton *backButton = nullptr;
-    
+
     QScrollArea *scrollArea = nullptr;
     QWidget *scrollAreaWidgetContents = nullptr;
-    
+
     QGridLayout *gridLayout = nullptr;
     QGridLayout *gridLayout_2 = nullptr;
-    
+
     QWidget *centralwidget = nullptr;
 };
 

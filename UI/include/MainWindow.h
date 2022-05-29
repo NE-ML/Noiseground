@@ -10,12 +10,12 @@
 #include "SignUpDialog.h"
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    
+
     std::shared_ptr<SignUpDialog> getSignUpDialog();
     std::shared_ptr<AuthDialog> getAuthDialog();
 
@@ -31,7 +31,7 @@ private:
     std::shared_ptr<SignUpDialog> signUpDialog = nullptr;
     QWidget *centralwidget = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
-    QLabel *label = nullptr;
+    QLabel *introLabel = nullptr;
     QPushButton *loginButton = nullptr;
     QSpacerItem *horizontalSpacer = nullptr;
     QPushButton *signUpButton = nullptr;
@@ -39,7 +39,7 @@ private:
     QPushButton *exitButton = nullptr;
     QMenuBar *menubar = nullptr;
     QStatusBar *statusbar = nullptr;
-    
+
     void setupUi(QMainWindow *MainWindow);
 
     void retranslateUi(QMainWindow *MainWindow);

@@ -18,6 +18,7 @@ void AuthDialog::on_loginButton_clicked() {
     std::string pass = password->text().toStdString();
     if (log.empty() || pass.empty()) {
         QMessageBox::warning(this, "Ошибка авторизации", "Логин и пароль не могут быть пустыми");
+        return;
     }
     unsigned result = Core::login(log, pass);
     switch (result) {
@@ -29,7 +30,7 @@ void AuthDialog::on_loginButton_clicked() {
             QMessageBox::warning(this, "Ошибка авторизации","Неправильный логин или пароль");
             break;
         default:
-            QMessageBox::warning(this, "Авторизация невозможна", "Нет соединения с сервером");
+            QMessageBox::critical(this, "Авторизация невозможна", "Нет соединения с сервером");
     }
 }
 
@@ -38,7 +39,7 @@ void AuthDialog::setupUi(QDialog *AuthDialog) {
         AuthDialog->setObjectName(QString::fromUtf8("AuthDialog"));
     AuthDialog->resize(400, 300);
     label = new QLabel(AuthDialog);
-    label->setObjectName(QString::fromUtf8("label"));
+    label->setObjectName(QString::fromUtf8("introLabel"));
     label->setGeometry(QRect(0, 10, 401, 31));
     QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     sizePolicy.setHorizontalStretch(0);

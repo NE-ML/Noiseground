@@ -22,14 +22,12 @@ void PlayPauseButton::changeState() {
         case PPButtonState::Playing:
             state = PPButtonState::Paused;
             setText("Play");
-            // setIcon(pauseIcon);
             emit pause(soundId);
             break;
             
         case PPButtonState::Paused:
             state = PPButtonState::Playing;
             setText("Pause");
-            // setIcon(pauseIcon);
             emit play(soundId);
             break;
         default:
@@ -47,12 +45,10 @@ void PlayPauseButton::setState(PPButtonState newState) {
         case PPButtonState::Paused:
             this->state = newState;
             setText("Play");
-            // setIcon(pauseIcon);
             break;
         case PPButtonState::Playing:
             this->state = newState;
             setText("Pause");
-            // setIcon(pauseIcon);
             break;
         default:
             setText("Wrong newState");

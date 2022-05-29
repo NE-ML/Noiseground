@@ -13,10 +13,10 @@ class SoundBox : public QGroupBox {
 Q_OBJECT
 public:
     explicit SoundBox(const std::pair<int, std::string> &data);
-    
+
 public slots:
     void pause(int soundId);
-    
+
     void volumeChanged(int value);
 
     void play(int soundId);

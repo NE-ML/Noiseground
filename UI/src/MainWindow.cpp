@@ -27,7 +27,7 @@ MainWindow::~MainWindow() {
 void MainWindow::setupUi(QMainWindow *MainWindow) {
     if (MainWindow->objectName().isEmpty())
         MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-    MainWindow->resize(800, 600);
+    MainWindow->resize(600, 600);
     QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
     sizePolicy.setHorizontalStretch(0);
     sizePolicy.setVerticalStretch(0);
@@ -37,17 +37,18 @@ void MainWindow::setupUi(QMainWindow *MainWindow) {
     centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
     verticalLayout = new QVBoxLayout(centralwidget);
     verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-    label = new QLabel(centralwidget);
-    label->setObjectName(QString::fromUtf8("label"));
-    QFont font;
-    font.setFamily(QString::fromUtf8("JetBrains Mono"));
-    font.setPointSize(18);
-    font.setBold(true);
-    font.setItalic(true);
-    font.setWeight(75);
-    label->setFont(font);
 
-    verticalLayout->addWidget(label, 0, Qt::AlignHCenter);
+    auto *logo = new QLabel(centralwidget);
+    logo->setPixmap(QPixmap("../UI/style/logo.png"));
+
+    verticalLayout->addWidget(logo, 0, Qt::AlignHCenter);
+
+    introLabel = new QLabel(centralwidget);
+    introLabel->setObjectName(QString::fromUtf8("introLabel"));
+    introLabel->setText("Добро пожаловать в Noiseground!");
+    introLabel->setGeometry(QRect(140, 200, 331, 31));
+
+    verticalLayout->addWidget(introLabel, 0, Qt::AlignHCenter);
 
     loginButton = new QPushButton(centralwidget);
     loginButton->setObjectName(QString::fromUtf8("loginButton"));
@@ -56,7 +57,6 @@ void MainWindow::setupUi(QMainWindow *MainWindow) {
     sizePolicy1.setVerticalStretch(0);
     sizePolicy1.setHeightForWidth(loginButton->sizePolicy().hasHeightForWidth());
     loginButton->setSizePolicy(sizePolicy1);
-
     verticalLayout->addWidget(loginButton);
 
     horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -84,7 +84,7 @@ void MainWindow::setupUi(QMainWindow *MainWindow) {
     MainWindow->setCentralWidget(centralwidget);
     menubar = new QMenuBar(MainWindow);
     menubar->setObjectName(QString::fromUtf8("menubar"));
-    menubar->setGeometry(QRect(0, 0, 800, 22));
+    menubar->setGeometry(QRect(0, 0, 600, 22));
     MainWindow->setMenuBar(menubar);
     statusbar = new QStatusBar(MainWindow);
     statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -94,11 +94,7 @@ void MainWindow::setupUi(QMainWindow *MainWindow) {
 } // setupUi
 
 void MainWindow::retranslateUi(QMainWindow *MainWindow) {
-    MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-    label->setText(QCoreApplication::translate("MainWindow",
-                                               "<html><head/><body><p align=\"center\"><span style=\" color:#1c71d8;"
-                                               "\">Добро пожаловать в Noiseground!</span></p></body></html>",
-                                               nullptr));
+    MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Главное окно", nullptr));
     loginButton->setText(QCoreApplication::translate("MainWindow", "Войти", nullptr));
     signUpButton->setText(QCoreApplication::translate("MainWindow", "Зарегистрироваться", nullptr));
     exitButton->setText(QCoreApplication::translate("MainWindow", "Выйти", nullptr));

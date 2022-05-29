@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Core.h"
 
 #include "Sounds.h"
@@ -30,15 +31,11 @@ void Core::loadMusic(const std::string& path) {
     musics.loadMusics(path);
 }
 
-bool Core::signUp(const string &login, const string &pass) {
-    if (client.registerUser(login, pass) != 200) {
-        std::cerr << "Register failed\n";
-        return false;
-    }
-    return true;
+unsigned int Core::signUp(const std::string &login, const std::string &pass) {
+    return client.registerUser(login, pass);
 }
 
-unsigned Core::login(const string &login, const string &pass) {
+unsigned Core::login(const std::string &login, const std::string &pass) {
     return client.loginUser(login, pass);
 }
 

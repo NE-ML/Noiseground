@@ -17,12 +17,21 @@ void SignUpDialog::on_signUpButton_clicked() {
     QString log = login->text();
     QString pass = this->pass->text();
     QString passRepeat = this->passRepeat->text();
-    // Some logic then
     if (pass == passRepeat && !log.isEmpty()) {
-        Core::signUp(log.toStdString(), pass.toStdString());
-        QMessageBox::information(this, "Успех!", "Вы успешно зарегистрированы!");
-        close();
-        emit showUserWindow();
+        unsigned response = Core::signUp(log.toStdString(), pass.toStdString());
+        switch (response) {
+            case 200:
+                QMessageBox::information(this, "Успех!", "Вы успешно зарегистрированы!");
+                close();
+                emit showUserWindow();
+                break;
+            case 403:
+                QMessageBox::warning(this, "Регистрация невозможна", "Логин уже занят!");
+                break;
+            default:
+                QMessageBox::critical(this, "Регистрация невозможна!", "Нет соединения с сервером!");
+        }
+
     } else if (log.isEmpty()) {
         QMessageBox::warning(this, "Ошибка!", "Логин не может быть пустым!");
     } else {
@@ -36,14 +45,14 @@ void SignUpDialog::retranslateUi(QDialog *SignUpDialog) {
                                                    "\320\240\320\265\320\263\320\270\321\201\321\202\321\200\320\260\321\206\320\270\321\217",
                                                    nullptr));
     enterLoginLabel->setText(QCoreApplication::translate("SignUpDialog",
-                                               "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\273\320\276\320\263\320\270\320\275",
-                                               nullptr));
+                                                         "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\273\320\276\320\263\320\270\320\275",
+                                                         nullptr));
     enterPasswordLabel->setText(QCoreApplication::translate("SignUpDialog",
-                                                 "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
-                                                 nullptr));
+                                                            "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
+                                                            nullptr));
     repeatPasswordLabel->setText(QCoreApplication::translate("SignUpDialog",
-                                                 "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
-                                                 nullptr));
+                                                             "\320\237\320\276\320\262\321\202\320\276\321\200\320\270\321\202\320\265 \320\277\320\260\321\200\320\276\320\273\321\214",
+                                                             nullptr));
     signUpButton->setText(QCoreApplication::translate("SignUpDialog",
                                                       "\320\227\320\260\321\200\320\265\320\263\320\270\321\201\321\202\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214\321\201\321\217",
                                                       nullptr));
@@ -59,7 +68,7 @@ void SignUpDialog::setupUi(QDialog *SignUpDialog) {
     groupBox->setGeometry(QRect(50, 60, 305, 168));
     layoutWidget = new QWidget(groupBox);
     layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-    layoutWidget->setGeometry(QRect(10, 20, 285, 128));
+    layoutWidget->setGeometry(QRect(10, 30, 285, 128));
     verticalLayout_2 = new QVBoxLayout(layoutWidget);
     verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
     verticalLayout_2->setContentsMargins(0, 0, 0, 0);

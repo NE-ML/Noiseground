@@ -11,8 +11,8 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
     std::vector<std::string> soundsTmp = Core::getStdSounds();
     std::for_each(soundsTmp.begin(), soundsTmp.end(), [this](const std::string &soundName) {
         unsigned dotPos = soundName.rfind('.');
-        soundNames.push_back("<html><head/><body><p align=\"center\">" + soundName.substr(0, dotPos) + 
-        "</p></body></html>");
+        soundNames.push_back("<html><head/><body><p align=\"center\">" + soundName.substr(0, dotPos) +
+                             "</p></body></html>");
     });
 
     if (this->objectName().isEmpty()) {
@@ -32,11 +32,11 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
     backButton->setSizePolicy(szPolicy);
 
     auto horizLayout = new QHBoxLayout();
-    
+
     horizLayout->addWidget(backButton, 0, Qt::AlignRight);
-    
+
     gridLayout_2->addLayout(horizLayout, 0, 0, 1, 1);
-    
+
     scrollArea = new QScrollArea(centralwidget);
     scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
     scrollArea->setMinimumSize(QSize(20, 20));

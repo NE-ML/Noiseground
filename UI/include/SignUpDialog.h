@@ -8,7 +8,7 @@
 #include <QLineEdit>
 
 class SignUpDialog : public QDialog {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     explicit SignUpDialog(QWidget *parent = nullptr);
@@ -17,11 +17,11 @@ public:
 signals:
     void showMainWindow();
     void showUserWindow();
-    
+
 private slots:
     void on_signUpButton_clicked();
     void on_backButton_clicked();
-    
+
 private:
     QGroupBox *groupBox = nullptr;
     QWidget *layoutWidget = nullptr;
@@ -38,7 +38,7 @@ private:
     QLineEdit *passRepeat = nullptr;
     QPushButton *signUpButton = nullptr;
     QPushButton *backButton = nullptr;
-    
+
     void setupUi(QDialog *SignUpDialog);
 
     void retranslateUi(QDialog *SignUpDialog);
