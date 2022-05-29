@@ -8,22 +8,21 @@
 #include <QLineEdit>
 
 class AuthDialog : public QDialog {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     explicit AuthDialog(QWidget *parent = nullptr);
     ~AuthDialog() override;
 
-signals:
-    void showMainWindow();
+    signals:
+            void showMainWindow();
     void showUserWindow();
 
 private slots:
-    void on_loginButton_clicked();
+            void on_loginButton_clicked();
     void on_backButton_clicked();
 
 private:
-    QLabel *label = nullptr;
     QGroupBox *groupBox = nullptr;
     QWidget *layoutWidget = nullptr;
     QVBoxLayout *verticalLayout = nullptr;
@@ -38,7 +37,7 @@ private:
 
     void setupUi(QDialog *AuthDialog);
 
-    void retranslateUi(QDialog *AuthDialog);
+    void setTexts(QDialog *AuthDialog);
 };
 
 #endif  // AUTH_DIALOG_H

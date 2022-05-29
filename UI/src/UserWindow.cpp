@@ -19,6 +19,8 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
         this->setObjectName(QString::fromUtf8("UserWindow"));
     }
     this->resize(800, 600);
+    this->setWindowTitle("Noiseground");
+
     centralwidget = new QWidget(this);
     centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
     gridLayout_2 = new QGridLayout(centralwidget);
@@ -47,10 +49,13 @@ UserWindow::UserWindow(QWidget *parent) : QMainWindow(parent) {
     gridLayout = new QGridLayout(scrollAreaWidgetContents);
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
 
-    for (int i = 0; i < soundNames.size(); ++i) {
-        soundBoxes.push_back(new SoundBox(std::make_pair(i + 1, soundNames[i])));
-        gridLayout->addWidget(soundBoxes[i], i / 4, i % 4, 1, 1);
-    }
+    int number = 0;
+    std::for_each(soundNames.begin(), soundNames.end(), [this, &number](const std::string &name) {
+        soundBoxes.push_back(new SoundBox(std::make_pair(number + 1, name)));
+        gridLayout->addWidget(soundBoxes.back(), number / 4, number % 4, 1, 1);
+        ++number;
+    });
+
     scrollArea->setWidget(scrollAreaWidgetContents);
 
     gridLayout_2->addWidget(scrollArea, 1, 0, 1, 1);
