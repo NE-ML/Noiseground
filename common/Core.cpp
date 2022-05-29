@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Core.h"
 
 #include "Sounds.h"
